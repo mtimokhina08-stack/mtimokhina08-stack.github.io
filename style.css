@@ -11,7 +11,7 @@ body {
 }
 /*==================================================
   ТЯН НА ФОНЕ
-*/
+==================================================*/
 .fixed-corner {
     position: fixed;
     bottom: 0; /* ПРИЖАТО к нижнему краю */
@@ -39,10 +39,74 @@ body {
         transform: scale(1.1);
         filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
     }
-@media (max-width: 800px) {
+@media (max-width: 2300px) {
     .corner-img {
         width: 300px; /* На телефонах поменьше, но всё ещё видно */
     }
+}
+/* ===============================================
+   ГИФКИ ПО БОКАМ СВЕРХУ (ПОД ВЕРХНЕЙ ПЛАШКОЙ)
+   ============================================= */
+
+.top-gifs {
+    position: fixed;
+    top: 8%; /* Процент от верха (под верхней плашкой) */
+    left: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.top-gif {
+    position: absolute;
+    width: min(300px, 50vw); /* Не больше 80px, но не шире 8% экрана */
+    height: auto;
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.top-gif--left {
+    left: 3%; /* 3% от левого края */
+    top: 0;
+}
+
+.top-gif--right {
+    right: 3%; /* 3% от правого края */
+    top: 0;
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 2300px) {
+    .top-gif {
+        width: min(200px, 50vw);
+    }
+
+    .top-gif--left {
+        left: 2%;
+    }
+
+    .top-gif--right {
+        right: 2%;
+    }
+}
+@media (max-width: 700px) {
+    .top-gif {
+        width: min(200px, 10vw);
+        top: 0;
+    }
+
+    .top-gif--left {
+        left: 2%;
+        top: 0;
+    }
+
+    .top-gif--right {
+        right: 2%;
+        top: 0;
+    }
+    
 }
 /* ===============================================
 ВЕРХНЯЯ ПЛАШКА — СТИЛЬ WINDOWS 95 С ГРАДИЕНТОМ
@@ -102,11 +166,12 @@ body {
    ============================================= */
 
 .arcade-banner--inline {
-    position: relative;
+    position: sticky;
     width: fit-content;
     max-width: 90%;
     margin: 80px auto 0px;
     display: table;
+    z-index: 99;
 }
 
 /* Анимируем только внутренние звёздочки */
@@ -186,58 +251,58 @@ body {
    РАЗМЕРЫ ПЛАШЕК — ИСПРАВЛЕНЫ (ИСПОЛЬЗУЕМ vw И rem)
    ============================================= */
 
-    .card--xl {
-        width: 340px;
-        height: 400px;
-        top: 10px;
-        left: 50px;
-        z-index: 10;
-    }
+* ===============================================
+РАСПОЛОЖЕНИЕ ПЛАШЕК — ТОЛЬКО ПРОЦЕНТЫ
+============================================= */
 
-    .card--md {
-        width: 300px;
-        height: 320px;
-        top: 10px;
-        right: 100px;
-        z-index: 20;
-    }
+.card--xl {
+    width: min(340px, 22vw);
+    height: min(400px, 38vh);
+    top: 5%;
+    left: 5%;
+    z-index: 10;
+}
 
-    .card--tall {
-        width: 240px;
-        height: 480px;
-        top: 500px;
-        left: 200px;
-        z-index: 25;
-    }
+.card--md {
+    width: min(300px, 20vw);
+    height: min(320px, 30vh);
+    top: 15%;
+    right: 8%;
+    z-index: 20;
+}
 
-    .card--small {
-        width: 210px;
-        height: 180px;
-        bottom: 80px;
-        right: 10px;
-        z-index: 30;
-        top: 600px;
-    }
+.card--tall {
+    width: min(240px, 16vw);
+    height: min(480px, 45vh);
+    top: 45%;
+    left: 8%;
+    z-index: 25;
+}
 
-    .card--wide {
-        width: 400px;
-        height: 190px;
-        bottom: 150px;
-        left: 300px;
-        z-index: 15;
-        top: 200px;
-    }
+.card--small {
+    width: min(210px, 14vw);
+    height: min(180px, 17vh);
+    bottom: 10%;
+    right: 10%;
+    z-index: 30;
+}
 
-    .card--accent {
-        width: 280px;
-        height: 140px;
-        bottom: 280px;
-        left: 500px;
-        z-index: 28;
-        background: rgba(80, 60, 120, 0.85);
-        top: 400px;
-    }
+.card--wide {
+    width: min(400px, 27vw);
+    height: min(190px, 18vh);
+    bottom: 30%;
+    left: 55%;
+    z-index: 15;
+}
 
+.card--accent {
+    width: min(280px, 18vw);
+    height: min(140px, 13vh);
+    bottom: 50%;
+    left: 40%;
+    z-index: 28;
+    background: rgba(80, 60, 120, 0.85);
+}
     /* ===============================================
    АДАПТИВНОСТЬ — ПЛАШКИ НЕ РАЗЪЕЗЖАЮТСЯ
    ============================================= */
@@ -284,53 +349,6 @@ body {
 
         .card--wide {
             min-height: 150px;
-        }
-    }
-
-    /* Большие десктопы (фиксация крайних положений) */
-    @media (min-width: 1600px) {
-        .card--xl {
-            left: -8%;
-        }
-
-        .card--md {
-            right: 55%;
-        }
-
-        .card--tall {
-            left: 48%;
-        }
-
-        .card--wide {
-            right: 45%;
-        }
-
-        .card--small {
-            left: 22%;
-        }
-
-        .card--accent {
-            left: 18%;
-        }
-    }
-
-    /* Очень широкие экраны (фиксация от краёв) */
-    @media (min-width: 2000px) {
-        .cards-stage {
-            max-width: 1800px;
-            margin: 0 auto;
-        }
-
-        .card--xl {
-            left: max(-50px, -12%);
-        }
-
-        .card--md {
-            right: max(-20px, 50%);
-        }
-
-        .card--tall {
-            left: 50%;
         }
     }
 

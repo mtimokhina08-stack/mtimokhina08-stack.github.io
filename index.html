@@ -108,18 +108,28 @@
                 </div>
             </div>
 
-            <!-- Плашка 6 – дополнительная, с текстом из референса -->
-            <div class="card card--accent card--float card--win95" data-card="6">
+            <!-- Плашка с ссылками на соцсети -->
+            <div class="card card--win95 card--social" id="cardSocial">
                 <div class="window-titlebar">
-                    <div class="window-title">📄 YOUR MEMES</div>
+                    <span class="window-title">🔗 СВЯЗЬ РОДНОЙ</span>
                     <div class="window-buttons">
-                        <span class="window-btn window-btn-min">─</span>
-                        <span class="window-btn window-btn-max">□</span>
+                        <span class="window-btn">_</span>
+                        <span class="window-btn">□</span>
                         <span class="window-btn window-btn-close">✕</span>
                     </div>
                 </div>
                 <div class="card__content">
-                    <div class="card__placeholder">ТУТ ССЫЛКИ НА АККИ</div>
+                    <div class="social-links-container">
+                        <a href="https://t.me/Faaaaact" target="_blank" class="social-link">
+                            <img src="img/Tg.png" alt="Telegram" class="social-banner">
+                        </a>
+                        <a href="https://github.com/mtimokhina08-stack" target="_blank" class="social-link">
+                            <img src="img/Git.png" alt="GitHub" class="social-banner">
+                        </a>
+                        <a href="https://shikimori.one/_Mauss" target="_blank" class="social-link">
+                            <img src="img/Shiki.png" alt="Shiki" class="social-banner">
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -169,6 +179,28 @@
             <img src="img/girl2.png" alt="Персонаж" class="corner-img" id="dynamicImg">
         </div>
     </div>
+
+    <!-- ===============================================
+    МИНИ-ИГРА: СБОР ЗВЁЗДОЧЕК
+    ============================================= -->
+    <!-- Плашка со счётчиком -->
+    <div class="card card--game-counter card--win95" id="gameCounterCard">
+        <div class="window-titlebar">       
+        </div>
+        <div class="card__content">
+            <div class="game-counter-content">
+                <div class="stars-count" id="starsCount">0</div>
+                <div class="stars-total">/ 10</div>
+                <div class="stars-message" id="starsMessage">Собери все звёздочки! ⭐</div>
+                <div class="stars-gif" id="starsGif" style="display: none;">
+                    <img src="img/cat.gif" alt="Поздравление!" class="celebration-gif">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Контейнер для звёздочек -->
+    <div id="starsContainer" class="stars-container"></div>
     <script src="script.js"></script>
 </body>
 </html>

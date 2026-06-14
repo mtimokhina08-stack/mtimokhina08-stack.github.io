@@ -255,6 +255,7 @@ body {
 РАСПОЛОЖЕНИЕ ПЛАШЕК — ТОЛЬКО ПРОЦЕНТЫ
 ============================================= */
 
+
 .card--xl {
     width: min(340px, 22vw);
     height: min(400px, 38vh);
@@ -385,149 +386,135 @@ body {
    СТИЛЬ WINDOWS 95 (ПЕРЕОПРЕДЕЛЕНИЕ СТЕКЛА)
    ============================================= */
 
-    .card--win95 {
-        background: #ece9d8 !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-        border: none !important;
-        padding: 0 !important;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
+/* Стиль Windows 95 для плашек */
+.card--win95 {
+    background: #ece9d8 !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+    .card--win95::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 5;
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #808080;
+        border-bottom: 3px solid #808080;
     }
 
-        /* Внешняя рамка окна */
-        .card--win95::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 5;
-            border-top: 3px solid #ffffff;
-            border-left: 3px solid #ffffff;
-            border-right: 3px solid #808080;
-            border-bottom: 3px solid #808080;
-        }
-
-        /* Внутренняя рамка окна */
-        .card--win95::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            right: 3px;
-            bottom: 3px;
-            pointer-events: none;
-            z-index: 5;
-            border-top: 1px solid #dfdfdf;
-            border-left: 1px solid #dfdfdf;
-            border-right: 1px solid #a0a0a0;
-            border-bottom: 1px solid #a0a0a0;
-        }
-
-    /* Заголовок окна Windows 95 */
-    .window-titlebar {
-        background: #000080;
-        padding: 6px 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: 'Segoe UI', 'Courier New', monospace;
-        font-weight: bold;
-        font-size: 13px;
-        position: relative;
-        z-index: 15;
-        width: 100%;
-        box-sizing: border-box;
-        margin: 0;
+    .card--win95::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        pointer-events: none;
+        z-index: 5;
+        border-top: 1px solid #dfdfdf;
+        border-left: 1px solid #dfdfdf;
+        border-right: 1px solid #a0a0a0;
+        border-bottom: 1px solid #a0a0a0;
     }
 
-    .card--win95 .window-titlebar {
-        width: calc(100% - 6px);
-        margin: 3px 3px 0 3px;
-    }
-
-    .window-title {
-        color: #ffffff;
-        letter-spacing: 0.5px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    .window-buttons {
-        display: flex;
-        gap: 4px;
-    }
-
-    /* Кнопка окна */
-    .window-btn {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background: #c0c0c0;
-        border-top: 1px solid #ffffff;
-        border-left: 1px solid #ffffff;
-        border-right: 1px solid #000000;
-        border-bottom: 1px solid #000000;
-        text-align: center;
-        line-height: 18px;
-        font-size: 13px;
-        font-weight: bold;
-        cursor: default;
-        color: #000000;
-        font-family: monospace;
-    }
-
-        .window-btn:active {
-            border-top: 1px solid #000000;
-            border-left: 1px solid #000000;
-            border-right: 1px solid #ffffff;
-            border-bottom: 1px solid #ffffff;
-            background: #a0a0a0;
-        }
-
-    .window-btn-close:hover {
-        background: #ff0000;
-        color: #ffffff;
-    }
-
-    /* Контент внутри окна Windows 95 */
     .card--win95 .card__content {
         background: #ece9d8;
-        padding: 1.5rem;
+        padding: 1rem;
         flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         margin: 0 3px 3px 3px;
         position: relative;
         z-index: 10;
     }
 
-    .card--win95 .card__placeholder {
-        background: #ece9d8;
-        color: #000000;
-        backdrop-filter: none;
-        font-family: 'Courier New', monospace;
-        font-weight: normal;
-        border: 1px solid #a0a0a0;
-        border-radius: 0;
+.window-titlebar {
+    background: #000080;
+    padding: 6px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Segoe UI', 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 13px;
+    width: calc(100% - 6px);
+    margin: 3px 3px 0 3px;
+    position: relative;
+    z-index: 15;
+}
+
+.window-title {
+    color: #ffffff;
+}
+
+.window-btn {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #c0c0c0;
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    line-height: 18px;
+    font-size: 13px;
+    cursor: default;
+    color: #000000;
+}
+
+/* ===============================================
+   ПЛАШКА С СОЦСЕТЯМИ
+   ============================================= */
+
+.card--social {
+    width: min(320px, 25vw) !important;
+    height: auto !important;
+    min-height: min(280px, 30vh) !important;
+    top: 5% !important;
+    right: 38% !important;
+    left: auto !important;
+    bottom: auto !important;
+    z-index: 35 !important;
+}
+
+    .card--social .card__content {
+        padding: 12px !important;
+        overflow: hidden;
     }
 
-    /* Hover-эффект для Windows 95 */
-    .card--win95:hover {
-        background: #e0dcc8 !important;
+.social-links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.social-link {
+    display: block;
+    width: 100%;
+    transition: transform 0.2s ease;
+}
+
+    .social-link:hover {
         transform: scale(1.02);
     }
 
-        .card--win95:hover .card__content {
-            background: #e0dcc8;
-        }
-
+.social-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
     /* ===============================================
    СИНИЙ ЭКРАН СМЕРТИ (BSOD)
    ============================================= */
@@ -716,6 +703,117 @@ body {
             font-size: 12px;
         }
     }
+/* ===============================================
+   МИНИ-ИГРА: ЗВЁЗДОЧКИ
+   ============================================= */
+
+/* Плашка со счётчиком */
+.card--game-counter {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    top: auto !important;
+    right: auto !important;
+    width: 200px !important;
+    height: 200px !important;
+    z-index: 200 !important;
+    cursor: default !important;
+}
+
+.game-counter-content {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    width: 100%;
+}
+
+.stars-count {
+    font-size: 32px;
+    font-weight: bold;
+    color: #000080;
+    display: inline-block;
+}
+
+.stars-total {
+    font-size: 24px;
+    color: #000000;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.stars-message {
+    font-size: 10px;
+    color: #000000;
+    margin-top: 8px;
+    font-family: 'Courier New', monospace;
+}
+
+.celebration-gif {
+    max-width: 100px;
+    margin-top: 5px;
+}
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99 !important; /* Очень высокий слой */
+}
+
+.star {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.2s ease;
+    z-index: 10000 !important; /* Поверх всего */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+    .star:hover {
+        transform: scale(1.2);
+    }
+/* Плашка со счётчиком */
+.card--game-counter {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    top: auto !important;
+    right: auto !important;
+    width: 200px !important;
+    height: 130px !important;
+    cursor: default !important;
+}
+
+.star--collected {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0);
+}
+/* ===============================================
+   АНИМАЦИЯ ПОКАЧИВАНИЯ ДЛЯ ЗВЁЗДОЧЕК
+   ============================================= */
+
+@keyframes starSway {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+
+.star {
+    animation: starSway 3s ease-in-out infinite;
+    transform-origin: center center;
+}
     /* ===============================================
    АДАПТИВНОСТЬ (ДЕСКТОП → МОБИЛКА)
    ============================================= */

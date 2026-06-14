@@ -45,66 +45,149 @@
 
 
     // ===============================================
-    // СИНИЙ ЭКРАН (BSOD) ПРИ НАЖАТИИ НА КРЕСТИК
+    // СИНИЙ ЭКРАН — ТОЛЬКО ПРИ НАЖАТИИ НА КРЕСТИК
     // ===============================================
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const bsod = document.getElementById('bsod');
-        const restartBtn = document.getElementById('bsod-restart');
+    const bsodOverlay = document.getElementById('bsod');
+    const bsodRestartBtn = document.getElementById('bsod-restart');
 
-        // Находим все кнопки закрытия (крестики) в плашках
-        const closeButtons = document.querySelectorAll('.window-btn-close');
+    function showBsod() {
+        if (!bsodOverlay) return;
+        console.log('Открываем синий экран');
+        bsodOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
-        // Функция открытия синего экрана
-        function showBSOD() {
-            bsod.classList.add('active');
-            // Блокируем скролл на фоне
-            document.body.style.overflow = 'hidden';
-        }
+    function hideBsod() {
+        if (!bsodOverlay) return;
+        console.log('Закрываем синий экран');
+        bsodOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 
-        // Функция закрытия синего экрана (возврат на сайт)
-        function hideBSOD() {
-            bsod.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Добавляем обработчик на каждую кнопку закрытия
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.stopPropagation(); // Чтобы не сработали другие обработчики
-                showBSOD();
-            });
+    // Открытие синего экрана ТОЛЬКО при нажатии на крестик (кнопка закрытия)
+    document.querySelectorAll('.window-btn-close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            console.log('Клик по крестику');
+            showBsod();
         });
+    });
 
-        // Перезагрузка (закрытие синего экрана)
-        restartBtn.addEventListener('click', function () {
-            hideBSOD();
+    // Кнопка перезагрузки на синем экране
+    if (bsodRestartBtn) {
+        bsodRestartBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            console.log('Клик по кнопке перезагрузки');
+            hideBsod();
         });
+    }
 
-        // Закрытие по нажатию клавиши R (как в настоящем BSOD)
-        document.addEventListener('keydown', function (e) {
-            if (bsod.classList.contains('active')) {
-                if (e.key === 'r' || e.key === 'R') {
-                    hideBSOD();
+    // Закрытие по клику на фон синего экрана
+    if (bsodOverlay) {
+        bsodOverlay.addEventListener('click', (e) => {
+            if (e.target === bsodOverlay) {
+                console.log('Клик по фону');
+                hideBsod();
+            }
+        });
+    }
+
+    // ===============================================
+    // МИНИ-ИГРА: СБОР ЗВЁЗДОЧЕК (ТОЛЬКО НА ГЛАВНОМ ЭКРАНЕ)
+    // ===============================================
+    (function () {
+        const TOTAL_STARS = 10;
+        let collectedStars = 0;
+
+        const starsContainer = document.getElementById('starsContainer');
+        const starsCountEl = document.getElementById('starsCount');
+        const starsMessageEl = document.getElementById('starsMessage');
+        const starsGifEl = document.getElementById('starsGif');
+
+        const starPositions = [
+            { top: '5%', left: '10%' },
+            { top: '12%', left: '85%' },
+            { top: '25%', left: '30%' },
+            { top: '35%', left: '70%' },
+            { top: '48%', left: '15%' },
+            { top: '55%', left: '60%' },
+            { top: '68%', left: '25%' },
+            { top: '78%', left: '80%' },
+            { top: '88%', left: '45%' },
+            { top: '93%', left: '70%' }
+        ];
+
+        function createStar(starId, position) {
+            const star = document.createElement('img');
+            star.className = 'star';
+            star.id = `star-${starId}`;
+            star.src = 'img/star.gif';
+            star.alt = '⭐';
+            star.style.top = position.top;
+            star.style.left = position.left;
+            star.setAttribute('data-collected', 'false');
+
+            star.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (star.getAttribute('data-collected') === 'true') return;
+
+                star.setAttribute('data-collected', 'true');
+                star.style.opacity = '0';
+                star.style.transform = 'scale(0)';
+                star.style.pointerEvents = 'none';
+
+                collectedStars++;
+                if (starsCountEl) starsCountEl.textContent = collectedStars;
+
+                if (collectedStars === TOTAL_STARS) {
+                    if (starsMessageEl) starsMessageEl.textContent = '';
+                    if (starsGifEl) starsGifEl.style.display = 'block';
+
+                    const victoryMsg = document.createElement('div');
+                    victoryMsg.textContent = '✨ ВСЕ ЗВЁЗДЫ СОБРАНЫ! ✨';
+                    victoryMsg.style.cssText = `
+                    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                    background: #c0c0c0; padding: 20px 40px; border: 4px solid #ffffff;
+                    border-right-color: #000000; border-bottom-color: #000000;
+                    font-family: 'Courier New', monospace; font-size: 20px;
+                    font-weight: bold; z-index: 100000; text-align: center;
+                    box-shadow: 5px 5px 0px #000000;
+                `;
+                    document.body.appendChild(victoryMsg);
+                    setTimeout(() => {
+                        victoryMsg.style.opacity = '0';
+                        victoryMsg.style.transition = 'opacity 0.5s';
+                        setTimeout(() => victoryMsg.remove(), 500);
+                    }, 3000);
+                } else if (starsMessageEl) {
+                    const remaining = TOTAL_STARS - collectedStars;
+                    starsMessageEl.textContent = `Осталось ${remaining} звёздочек! ⭐`;
                 }
-            }
-        });
+            });
 
-        // Закрытие по двойному нажатию на фон (опционально)
-        bsod.addEventListener('dblclick', function (e) {
-            if (e.target === bsod) {
-                hideBSOD();
-            }
-        });
-    });
-    const cornerImg = document.getElementById('dynamicImg');
-    if (cornerImg) {
-        cornerImg.addEventListener('mouseenter', () => {
-            cornerImg.src = 'img/girl1.png';  // Меняем при наведении
-        });
-    cornerImg.addEventListener('mouseleave', () => {
-        cornerImg.src = 'img/girl2.png';    // Возвращаем обратно
-    });
-}
+            return star;
+        }
 
+        function initStarsOnMain() {
+            if (!starsContainer) return;
+            starsContainer.innerHTML = '';
+            for (let i = 0; i < starPositions.length; i++) {
+                const star = createStar(i, starPositions[i]);
+                starsContainer.appendChild(star);
+            }
+        }
+
+        function initGame() {
+            initStarsOnMain();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initGame);
+        } else {
+            initGame();
+        }
+    })();
 })();

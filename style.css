@@ -251,7 +251,7 @@ body {
    РАЗМЕРЫ ПЛАШЕК — ИСПРАВЛЕНЫ (ИСПОЛЬЗУЕМ vw И rem)
    ============================================= */
 
-* ===============================================
+/* ===============================================
 РАСПОЛОЖЕНИЕ ПЛАШЕК — ТОЛЬКО ПРОЦЕНТЫ
 ============================================= */
 
@@ -296,14 +296,6 @@ body {
     z-index: 15;
 }
 
-.card--accent {
-    width: min(280px, 18vw);
-    height: min(140px, 13vh);
-    bottom: 50%;
-    left: 40%;
-    z-index: 28;
-    background: rgba(80, 60, 120, 0.85);
-}
     /* ===============================================
    АДАПТИВНОСТЬ — ПЛАШКИ НЕ РАЗЪЕЗЖАЮТСЯ
    ============================================= */
@@ -514,6 +506,50 @@ body {
     height: auto;
     display: block;
     border-radius: 6px;
+}
+@media (max-width: 800px) {
+    .cards-section {
+        padding: 13rem 1.5rem 4rem;
+    }
+
+    .cards-stage {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+        position: relative;
+    }
+
+    /* Все карточки становятся статичными (не абсолютными) */
+    .card {
+        position: relative !important;
+        margin: 0 auto !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        opacity: 0;
+        width: 90% !important;
+        max-width: 320px;
+        height: auto !important;
+        min-height: 160px;
+    }
+
+        .card.visible {
+            transform: scale(1) !important;
+            opacity: 1;
+        }
+
+    .card--tall {
+        min-height: 280px;
+    }
+
+    .card--wide {
+        min-height: 150px;
+    }
 }
     /* ===============================================
    СИНИЙ ЭКРАН СМЕРТИ (BSOD)

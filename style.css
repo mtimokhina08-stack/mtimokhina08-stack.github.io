@@ -93,74 +93,232 @@ body {
     justify-content: center;
     text-align: center;
     will-change: transform, opacity;
-    /* Анимация появления */
     opacity: 0;
     transform: translateY(60px) scale(0.95);
     transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.2s;
 }
 
-    /* Появившаяся плашка */
     .card.visible {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
 
 /* ===============================================
-   РАЗМЕРЫ ПЛАШЕК
+   РАЗМЕРЫ ПЛАШЕК — ИСПРАВЛЕНЫ (ИСПОЛЬЗУЕМ vw И rem)
    ============================================= */
 
 .card--xl {
     width: 340px;
     height: 400px;
-    top: 5%;
-    left: -10%;
+    top: 10px;
+    left: 50px;
     z-index: 10;
 }
 
 .card--md {
     width: 300px;
     height: 320px;
-    top: -10%;
-    right: 50%;
+    top: 10px;
+    right: 100px;
     z-index: 20;
 }
 
 .card--tall {
     width: 240px;
     height: 480px;
-    top: 35%;
-    left: 50%;
+    top: 500px;
+    left: 200px;
     z-index: 25;
 }
 
 .card--small {
     width: 210px;
     height: 180px;
-    bottom: -10%;
-    left: 25%;
+    bottom: 80px;
+    right: 10px;
     z-index: 30;
+    top: 600px;
 }
 
 .card--wide {
     width: 400px;
     height: 190px;
-    bottom: 15%;
-    right: 50%;
+    bottom: 150px;
+    left: 300px;
     z-index: 15;
+    top: 200px;
 }
 
 .card--accent {
     width: 280px;
     height: 140px;
-    bottom: 30%;
-    left: 20%;
+    bottom: 280px;
+    left: 500px;
     z-index: 28;
     background: rgba(80, 60, 120, 0.85);
+    top: 400px;
 }
 
-.card--float {
-    bottom: 30%;
-    left: -20%;
+/* ===============================================
+   АДАПТИВНОСТЬ — ПЛАШКИ НЕ РАЗЪЕЗЖАЮТСЯ
+   ============================================= */
+
+/* Планшеты и узкие экраны (ширина 800-1200px) */
+@media (max-width: 1200px) and (min-width: 801px) {
+    .cards-stage {
+        min-height: 850px;
+    }
+
+    .card--xl {
+        left: -2%;
+        top: 2%;
+    }
+
+    .card--md {
+        right: 40%;
+        top: -3%;
+    }
+
+    .card--tall {
+        left: 42%;
+        top: 30%;
+    }
+
+    .card--small {
+        left: 15%;
+        bottom: -3%;
+    }
+
+    .card--wide {
+        right: 30%;
+        bottom: 10%
+    }
+
+    .card--accent {
+        left: 10%;
+        bottom: 25%;
+    }
+}
+
+/* Маленькие планшеты (600-800px) */
+@media (max-width: 800px) {
+    .cards-section {
+        padding: 13rem 1.5rem 4rem;
+    }
+
+    .cards-stage {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+        position: relative;
+    }
+
+    /* Все карточки становятся статичными (не абсолютными) */
+    .card {
+        position: relative !important;
+        margin: 0 auto !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        opacity: 0;
+        width: 90% !important;
+        max-width: 320px;
+        height: auto !important;
+        min-height: 160px;
+    }
+
+        .card.visible {
+            transform: scale(1) !important;
+            opacity: 1;
+        }
+
+    .card--tall {
+        min-height: 280px;
+    }
+
+    .card--wide {
+        min-height: 150px;
+    }
+}
+
+/* Большие десктопы (фиксация крайних положений) */
+@media (min-width: 1600px) {
+    .card--xl {
+        left: -8%;
+    }
+
+    .card--md {
+        right: 55%;
+    }
+
+    .card--tall {
+        left: 48%;
+    }
+
+    .card--wide {
+        right: 45%;
+    }
+
+    .card--small {
+        left: 22%;
+    }
+
+    .card--accent {
+        left: 18%;
+    }
+}
+
+/* Очень широкие экраны (фиксация от краёв) */
+@media (min-width: 2000px) {
+    .cards-stage {
+        max-width: 1800px;
+        margin: 0 auto;
+    }
+
+    .card--xl {
+        left: max(-50px, -12%);
+    }
+
+    .card--md {
+        right: max(-20px, 50%);
+    }
+
+    .card--tall {
+        left: 50%;
+    }
+}
+
+/* ===============================================
+   ЗАДЕРЖКИ ПОЯВЛЕНИЯ (БЕЗ ИЗМЕНЕНИЙ)
+   ============================================= */
+
+.card:nth-child(1).visible {
+    transition-delay: 0.05s;
+}
+
+.card:nth-child(2).visible {
+    transition-delay: 0.20s;
+}
+
+.card:nth-child(3).visible {
+    transition-delay: 0.35s;
+}
+
+.card:nth-child(4).visible {
+    transition-delay: 0.50s;
+}
+
+.card:nth-child(5).visible {
+    transition-delay: 0.65s;
+}
+
+.card:nth-child(6).visible {
+    transition-delay: 0.80s;
 }
 
 /* ===============================================

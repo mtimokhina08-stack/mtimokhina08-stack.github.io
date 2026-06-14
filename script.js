@@ -85,15 +85,6 @@
         });
     }
 
-    // Закрытие по клику на фон синего экрана
-    if (bsodOverlay) {
-        bsodOverlay.addEventListener('click', (e) => {
-            if (e.target === bsodOverlay) {
-                console.log('Клик по фону');
-                hideBsod();
-            }
-        });
-    }
 
     // ===============================================
     // МИНИ-ИГРА: СБОР ЗВЁЗДОЧЕК (ТОЛЬКО НА ГЛАВНОМ ЭКРАНЕ)
@@ -173,7 +164,7 @@
 
         function initStarsOnMain() {
             if (!starsContainer) return;
-            starsContainer.innerHTML = '';
+            starsContainer.innerHTML = 'Умничка!';
             for (let i = 0; i < starPositions.length; i++) {
                 const star = createStar(i, starPositions[i]);
                 starsContainer.appendChild(star);

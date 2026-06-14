@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <!-- ТЯН -->
+    <div class="fixed-corner">
+        <div class="corner-container">
+            <img src="img/girl2.png"
+                 alt="Персонаж"
+                 class="corner-img"
+                 id="dynamicImg"
+                 onmouseover="this.src='img/girl1.png'"
+                 onmouseout="this.src='img/girl2.png'">
+        </div>
+    </div>
     <!-- ГРАДИЕНТНАЯ ПЛАШКА СВЕРХУ -->
     <div class="arcade-banner">
         <div class="arcade-banner__content">
@@ -174,18 +184,12 @@
         <img src="img/akira.gif" alt="Правая гифка" class="top-gif top-gif--right">
     </div>
 
-    <div class="fixed-corner">
-        <div class="corner-container">
-            <img src="img/girl2.png" alt="Персонаж" class="corner-img" id="dynamicImg">
-        </div>
-    </div>
-
     <!-- ===============================================
     МИНИ-ИГРА: СБОР ЗВЁЗДОЧЕК
     ============================================= -->
     <!-- Плашка со счётчиком -->
     <div class="card card--game-counter card--win95" id="gameCounterCard">
-        <div class="window-titlebar">       
+        <div class="window-titlebar">
         </div>
         <div class="card__content">
             <div class="game-counter-content">

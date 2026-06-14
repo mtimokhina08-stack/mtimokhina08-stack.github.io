@@ -97,4 +97,14 @@
             }
         });
     });
+    const cornerImg = document.getElementById('dynamicImg');
+    if (cornerImg) {
+        cornerImg.addEventListener('mouseenter', () => {
+            cornerImg.src = 'img/girl1.png';  // Меняем при наведении
+        });
+    cornerImg.addEventListener('mouseleave', () => {
+        cornerImg.src = 'img/girl2.png';    // Возвращаем обратно
+    });
+}
+
 })();

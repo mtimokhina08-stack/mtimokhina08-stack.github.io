@@ -1,0 +1,535 @@
+﻿/* ===============================================
+   ГЛОБАЛЬНЫЕ СТИЛИ И ФОН
+   ============================================= */
+
+body {
+    background-image: url('https://i.imgur.com/8rebEnG.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* ===============================================
+   ВЕРХНЯЯ ПЛАШКА — СТИЛЬ WINDOWS 95 С ГРАДИЕНТОМ
+   ============================================= */
+.arcade-banner {
+    position: fixed; /* Фиксируем плашку на экране */
+    top: 0; /* Прижимаем к самому верхнему краю */
+    left: 0; /* Прижимаем к левому краю */
+    width: 100%; /* Растягиваем на 100% ширины экрана */
+    z-index: 100; /* Высокий приоритет, чтобы карточки не наезжали поверх */
+
+    background: #000000;
+    box-sizing: border-box;
+    padding: 1.6rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid #e0e0e0;
+    outline: 1px solid #000000;
+    box-shadow: inset 0 0 0 1px #000000;
+}
+
+.arcade-banner__content {
+    font-family: 'Courier New', Courier, monospace; /* Ретро-моноширинный шрифт */
+    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Отступы между элементами */
+    flex-wrap: wrap; /* Чтобы текст красиво переносился на мобилках */
+}
+
+/* Розовый текст (Русский) */
+.arcade-txt--pink {
+    color: #f7a3ca;
+    text-shadow: 0 0 2px rgba(247, 163, 202, 0.5);
+}
+
+/* Голубой текст (English) */
+.arcade-txt--cyan {
+    color: #5ce1e6;
+    text-shadow: 0 0 2px rgba(92, 225, 230, 0.5);
+}
+
+/* Желтые искорки / символы */
+.arcade-sparkle {
+    color: #ffe17d;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* ===============================================
+   СЕКЦИЯ С ПЛАШКАМИ
+   ============================================= */
+
+.cards-section {
+    padding: 15rem 2rem 8rem;
+    position: relative;
+    z-index: 3;
+}
+
+.cards-stage {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 750px;
+}
+
+/* ===============================================
+   БАЗОВАЯ ПЛАШКА
+   ============================================= */
+
+.card {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    will-change: transform, opacity;
+    /* Анимация появления */
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.2s;
+}
+
+    /* Появившаяся плашка */
+    .card.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+/* ===============================================
+   РАЗМЕРЫ ПЛАШЕК
+   ============================================= */
+
+.card--xl {
+    width: 340px;
+    height: 400px;
+    top: 5%;
+    left: -10%;
+    z-index: 10;
+}
+
+.card--md {
+    width: 300px;
+    height: 320px;
+    top: -10%;
+    right: 50%;
+    z-index: 20;
+}
+
+.card--tall {
+    width: 240px;
+    height: 480px;
+    top: 35%;
+    left: 50%;
+    z-index: 25;
+}
+
+.card--small {
+    width: 210px;
+    height: 180px;
+    bottom: -10%;
+    left: 25%;
+    z-index: 30;
+}
+
+.card--wide {
+    width: 400px;
+    height: 190px;
+    bottom: 15%;
+    right: 50%;
+    z-index: 15;
+}
+
+.card--accent {
+    width: 280px;
+    height: 140px;
+    bottom: 30%;
+    left: 20%;
+    z-index: 28;
+    background: rgba(80, 60, 120, 0.85);
+}
+
+.card--float {
+    bottom: 30%;
+    left: -20%;
+}
+
+/* ===============================================
+   ЗАДЕРЖКИ ПОЯВЛЕНИЯ
+   ============================================= */
+
+.card:nth-child(1).visible {
+    transition-delay: 0.05s;
+}
+.card:nth-child(2).visible {
+    transition-delay: 0.20s;
+}
+.card:nth-child(3).visible {
+    transition-delay: 0.35s;
+}
+.card:nth-child(4).visible {
+    transition-delay: 0.50s;
+}
+.card:nth-child(5).visible {
+    transition-delay: 0.65s;
+}
+.card:nth-child(6).visible {
+    transition-delay: 0.80s;
+}
+
+/* ===============================================
+   СТИЛЬ WINDOWS 95 (ПЕРЕОПРЕДЕЛЕНИЕ СТЕКЛА)
+   ============================================= */
+
+.card--win95 {
+    background: #ece9d8 !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+    /* Внешняя рамка окна */
+    .card--win95::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 5;
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #808080;
+        border-bottom: 3px solid #808080;
+    }
+
+    /* Внутренняя рамка окна */
+    .card--win95::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        pointer-events: none;
+        z-index: 5;
+        border-top: 1px solid #dfdfdf;
+        border-left: 1px solid #dfdfdf;
+        border-right: 1px solid #a0a0a0;
+        border-bottom: 1px solid #a0a0a0;
+    }
+
+/* Заголовок окна Windows 95 */
+.window-titlebar {
+    background: #000080;
+    padding: 6px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Segoe UI', 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 13px;
+    position: relative;
+    z-index: 15;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.card--win95 .window-titlebar {
+    width: calc(100% - 6px);
+    margin: 3px 3px 0 3px;
+}
+
+.window-title {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.window-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+/* Кнопка окна */
+.window-btn {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #c0c0c0;
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: default;
+    color: #000000;
+    font-family: monospace;
+}
+
+    .window-btn:active {
+        border-top: 1px solid #000000;
+        border-left: 1px solid #000000;
+        border-right: 1px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
+        background: #a0a0a0;
+    }
+
+.window-btn-close:hover {
+    background: #ff0000;
+    color: #ffffff;
+}
+
+/* Контент внутри окна Windows 95 */
+.card--win95 .card__content {
+    background: #ece9d8;
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 3px 3px 3px;
+    position: relative;
+    z-index: 10;
+}
+
+.card--win95 .card__placeholder {
+    background: #ece9d8;
+    color: #000000;
+    backdrop-filter: none;
+    font-family: 'Courier New', monospace;
+    font-weight: normal;
+    border: 1px solid #a0a0a0;
+    border-radius: 0;
+}
+
+/* Hover-эффект для Windows 95 */
+.card--win95:hover {
+    background: #e0dcc8 !important;
+    transform: scale(1.02);
+}
+
+    .card--win95:hover .card__content {
+        background: #e0dcc8;
+    }
+
+/* ===============================================
+   СИНИЙ ЭКРАН СМЕРТИ (BSOD)
+   ============================================= */
+
+.bsod-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000aa; /* Классический синий BSOD */
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', 'MS Sans Serif', monospace;
+}
+
+    .bsod-overlay.active {
+        display: flex;
+    }
+
+.bsod-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* BSOD окно в стиле Win95 */
+.bsod-window {
+    background: #c0c0c0;
+    padding: 4px;
+}
+
+    .bsod-window .win95-banner__inner {
+        background: #0000aa;
+        padding: 24px 20px;
+    }
+
+/* Контент синего экрана */
+.bsod-content {
+    color: #ffffff;
+    text-align: left;
+}
+
+.bsod-emoticon {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.bsod-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.bsod-message {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+    .bsod-message p {
+        margin: 8px 0;
+    }
+
+.bsod-code {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-left: 2px solid #ffffff;
+}
+
+/* Кнопка в стиле Windows 95 */
+.win95-btn {
+    background: #c0c0c0;
+    border: none;
+    padding: 8px 20px;
+    font-family: 'Courier New', 'MS Sans Serif', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+    .win95-btn:active {
+        border-top: 2px solid #000000;
+        border-left: 2px solid #000000;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+    }
+
+.bsod-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    /* Анимация мигающего курсора в конце */
+    .bsod-footer::after {
+        content: '_';
+        animation: bsodBlink 1s step-end infinite;
+        margin-left: 10px;
+        color: #ffffff;
+    }
+
+@keyframes bsodBlink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ===============================================
+   АДАПТИВНОСТЬ (ДЕСКТОП → МОБИЛКА)
+   ============================================= */
+
+/* Планшеты и узкие экраны */
+@media (max-width: 1000px) {
+    .cards-stage {
+        min-height: 1100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .card {
+        position: relative !important;
+        margin: 1rem auto;
+        transform: none !important;
+        opacity: 0;
+    }
+
+        .card.visible {
+            transform: scale(1) !important;
+            opacity: 1;
+        }
+
+    /* Единый размер для всех карточек на мобилках */
+    .card--xl,
+    .card--md,
+    .card--tall,
+    .card--small,
+    .card--wide,
+    .card--accent {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+        min-height: 160px;
+    }
+
+    .card--tall {
+        min-height: 280px;
+    }
+}
+
+/* Мобильные телефоны (верхняя плашка) */
+@media (max-width: 700px) {
+    .gradient-banner {
+        padding: 1rem 1rem 0 1rem;
+    }
+
+    .gradient-card__content {
+        padding: 0.6rem 1rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .bsod-emoticon {
+        font-size: 32px;
+    }
+
+    .bsod-title {
+        font-size: 18px;
+    }
+
+    .bsod-message {
+        font-size: 12px;
+    }
+
+    .bsod-code {
+        font-size: 10px;
+        overflow-x: auto;
+    }
+
+    .win95-btn {
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+}

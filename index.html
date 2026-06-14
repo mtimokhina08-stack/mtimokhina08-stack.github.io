@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Neko-Dates — найди своего Player 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ГРАДИЕНТНАЯ ПЛАШКА СВЕРХУ -->
+    <div class="arcade-banner">
+        <div class="arcade-banner__content">
+            <span class="arcade-sparkle">✦ ∙ ✦ ₊ ✦</span>
+            <span class="arcade-txt--pink">Сайт крутой девченки</span>
+            <span class="arcade-txt--cyan">ХИХИ</span>
+            <span class="arcade-sparkle">✦ ₊ ✦ ₊ ✦</span>
+        </div>
+    </div>
+
+    <!-- СЕКЦИЯ С ПЛАШКАМИ (появляются при скролле) -->
+    <section class="cards-section" id="cardsSection">
+        <div class="cards-stage" id="cardsStage">
+
+            <!-- Плашка 1 – крупная XL -->
+            <div class="card card--xl card--tilt-left card--win95" data-card="1">
+                <div class="window-titlebar">
+                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-buttons">
+                        <span class="window-btn window-btn-min">─</span>
+                        <span class="window-btn window-btn-max">□</span>
+                        <span class="window-btn window-btn-close">✕</span>
+                    </div>
+                </div>
+                <div class="card__content">
+                    <div class="card__placeholder">ТУТ КРУТЫЕ КАРТИНКИ СКРОЛЛ</div>
+                </div>
+            </div>
+
+            <!-- Плашка 2 – средняя, справа, приподнята -->
+            <div class="card card--md card--lifted card--tilt-right card--win95" data-card="2">
+                <div class="window-titlebar">
+                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-buttons">
+                        <span class="window-btn window-btn-min">─</span>
+                        <span class="window-btn window-btn-max">□</span>
+                        <span class="window-btn window-btn-close">✕</span>
+                    </div>
+                </div>
+                <div class="card__content">
+                    <div class="card__placeholder">ТЕКСТ О СЕБЕ</div>
+                </div>
+            </div>
+
+            <!-- Плашка 3 – высокая узкая, наезжает на соседей -->
+            <div class="card card--tall card--offset-down card--win95" data-card="3">
+                <div class="window-titlebar">
+                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-buttons">
+                        <span class="window-btn window-btn-min">─</span>
+                        <span class="window-btn window-btn-max">□</span>
+                        <span class="window-btn window-btn-close">✕</span>
+                    </div>
+                </div>
+                <div class="card__content">
+                    <div class="card__placeholder">ГРУППЫ СКРОЛЛ</div>
+                </div>
+            </div>
+
+            <!-- Плашка 4 – маленькая, «зажатая» -->
+            <div class="card card--small card--tilt-left card--win95" data-card="4">
+                <div class="window-titlebar">
+                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-buttons">
+                        <span class="window-btn window-btn-min">─</span>
+                        <span class="window-btn window-btn-max">□</span>
+                        <span class="window-btn window-btn-close">✕</span>
+                    </div>
+                </div>
+                <div class="card__content">
+                    <div class="card__placeholder">ГИФКА(??)</div>
+                </div>
+            </div>
+
+            <!-- Плашка 5 – широкая приземистая -->
+            <div class="card card--wide card--tilt-right card--win95" data-card="5">
+                <div class="window-titlebar">
+                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-buttons">
+                        <span class="window-btn window-btn-min">─</span>
+                        <span class="window-btn window-btn-max">□</span>
+                        <span class="window-btn window-btn-close">✕</span>
+                    </div>
+                </div>
+                <div class="card__content">
+                    <div class="card__placeholder">ТУТ АНИМЕ/МАНГА</div>
+                </div>
+            </div>
+
+            <!-- Плашка 6 – дополнительная, с текстом из референса -->
+            <div class="card card--accent card--float card--win95" data-card="6">
+                <div class="window-titlebar">
+                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-buttons">
+                        <span class="window-btn window-btn-min">─</span>
+                        <span class="window-btn window-btn-max">□</span>
+                        <span class="window-btn window-btn-close">✕</span>
+                    </div>
+                </div>
+                <div class="card__content">
+                    <div class="card__placeholder">ТУТ ССЫЛКИ НА АККИ</div>
+                </div>
+            </div>
+
+        </div> <!-- закрытие cards-stage -->
+    </section> <!-- закрытие cards-section -->
+
+
+    <!-- СИНИЙ ЭКРАН СМЕРТИ (BSOD) -->
+    <div id="bsod" class="bsod-overlay">
+        <div class="bsod-container">
+            <div class="win95-banner bsod-window">
+                <div class="win95-banner__inner">
+                    <div class="bsod-content">
+                        <div class="bsod-emoticon">:(</div>
+                        <div class="bsod-title">Ваша система обнаружила критическую ошибку</div>
+                        <div class="bsod-message">
+                            <p>Похоже, вы закрыли важное окно. Это действие необратимо.</p>
+                            <p>Сам все сломал блин спасибо</p>
+                            <p>Если это повторится, обратитесь к администратору (он вам не ответит).</p>
+                        </div>
+                        <div class="bsod-code">
+                            *** STOP: 0x0000001E (0xC0000005, 0xFDE38AF9, 0x00000000, 0x7FFE0000)
+                            <br>
+                            *** window_close.exe - Address FDE38AF9 base at FDE38000
+                        </div>
+                        <div class="bsod-footer">
+                            <button id="bsod-restart" class="win95-btn">Перезагрузить компьютер (R)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -794,7 +794,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 99 !important; /* Очень высокий слой */
+    z-index: 10000 !important; /* Очень высокий слой */
 }
 
 .star {
@@ -804,7 +804,7 @@ body {
     cursor: pointer;
     pointer-events: auto;
     transition: all 0.2s ease;
-    z-index: 10000 !important; /* Поверх всего */
+    z-index: 100000 !important; /* Поверх всего */
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 

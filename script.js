@@ -164,7 +164,7 @@
 
         function initStarsOnMain() {
             if (!starsContainer) return;
-            starsContainer.innerHTML = 'Умничка!';
+            starsContainer.innerHTML = '';
             for (let i = 0; i < starPositions.length; i++) {
                 const star = createStar(i, starPositions[i]);
                 starsContainer.appendChild(star);

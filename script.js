@@ -1,5 +1,9 @@
 ﻿(function () {
-    // ========== 2. ПОЯВЛЕНИЕ ПЛАШЕК ПРИ СКРОЛЛЕ ==========
+    'use strict';
+
+    // ==========================================================================
+    // 1. ИНИЦИАЛИЗАЦИЯ И ПОЯВЛЕНИЕ ПЛАШЕК ПРИ СКРОЛЛЕ
+    // ==========================================================================
     const cards = document.querySelectorAll('.card');
 
     const observerOptions = {
@@ -20,34 +24,17 @@
         appearOnScroll.observe(card);
     });
 
-    // Дополнительная проверка для уже видимых элементов при загрузке
-    function checkVisibleOnLoad() {
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            if (rect.top < windowHeight - 50 && rect.bottom > 0) {
-                card.classList.add('visible');
-                appearOnScroll.unobserve(card);
-            }
-        });
-    }
-
-    window.addEventListener('load', checkVisibleOnLoad);
-
-    // ========== 4. ИНТЕРАКТИВ ПРИ КЛИКЕ НА ПЛАШКУ ==========
     cards.forEach((card, index) => {
         card.addEventListener('click', (e) => {
             e.stopPropagation();
             const cardId = card.getAttribute('data-card') || (index + 1);
-            console.log(`🎴 Нажата плашка №${cardId}`);
+            console.log(` 🎴  Нажата плашка №${cardId}`);
         });
     });
 
-
-    // ===============================================
-    // СИНИЙ ЭКРАН — ТОЛЬКО ПРИ НАЖАТИИ НА КРЕСТИК
-    // ===============================================
-
+    // ==========================================================================
+    // 2. СИНИЙ ЭКРАН СМЕРТИ (BSOD)
+    // ==========================================================================
     const bsodOverlay = document.getElementById('bsod');
     const bsodRestartBtn = document.getElementById('bsod-restart');
 
@@ -65,120 +52,180 @@
         document.body.style.overflow = '';
     }
 
-    // Открытие синего экрана ТОЛЬКО при нажатии на крестик (кнопка закрытия)
     document.querySelectorAll('.window-btn-close').forEach(closeBtn => {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             e.preventDefault();
-            console.log('Клик по крестику');
             showBsod();
         });
     });
 
-    // Кнопка перезагрузки на синем экране
     if (bsodRestartBtn) {
         bsodRestartBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             e.preventDefault();
-            console.log('Клик по кнопке перезагрузки');
             hideBsod();
         });
     }
 
+    // ==========================================================================
+    // 3. МИНИ-ИГРА: СБОР ЗВЁЗДОЧЕК
+    // ==========================================================================
 
-    // ===============================================
-    // МИНИ-ИГРА: СБОР ЗВЁЗДОЧЕК (ТОЛЬКО НА ГЛАВНОМ ЭКРАНЕ)
-    // ===============================================
-    (function () {
+    document.addEventListener('DOMContentLoaded', function () {
+
         const TOTAL_STARS = 10;
         let collectedStars = 0;
+        let gameActive = false;
+        let stars = [];
 
         const starsContainer = document.getElementById('starsContainer');
-        const starsCountEl = document.getElementById('starsCount');
-        const starsMessageEl = document.getElementById('starsMessage');
-        const starsGifEl = document.getElementById('starsGif');
+        const starCountEl = document.getElementById('starCount');
+        const starMessageEl = document.getElementById('starMessage');
+        const winGifEl = document.getElementById('winGif');
+        const startBtn = document.getElementById('startGameBtn');
 
-        const starPositions = [
-            { top: '5%', left: '10%' },
-            { top: '12%', left: '85%' },
-            { top: '25%', left: '30%' },
-            { top: '35%', left: '70%' },
-            { top: '48%', left: '15%' },
-            { top: '55%', left: '60%' },
-            { top: '68%', left: '25%' },
-            { top: '78%', left: '80%' },
-            { top: '88%', left: '45%' },
-            { top: '93%', left: '70%' }
-        ];
+        if (!starsContainer) {
+            console.error('ОШИБКА: starsContainer не найден!');
+            return;
+        }
+        if (!startBtn) {
+            console.error('ОШИБКА: startGameBtn не найден!');
+            return;
+        }
 
-        function createStar(starId, position) {
+        // ВСЕГДА новые случайные позиции
+        function getRandomPosition() {
+            const top = Math.random() * 80 + 5;
+            const left = Math.random() * 80 + 5;
+            console.log(`Новая позиция: top=${top}%, left=${left}%`);
+            return { top: `${top}%`, left: `${left}%` };
+        }
+
+        function createStar(id, position) {
             const star = document.createElement('img');
             star.className = 'star';
-            star.id = `star-${starId}`;
             star.src = 'img/star.gif';
             star.alt = '⭐';
             star.style.top = position.top;
             star.style.left = position.left;
+            star.style.position = 'absolute';
+            star.style.width = '35px';
+            star.style.height = '35px';
+            star.style.cursor = 'pointer';
+            star.style.transition = 'all 0.2s ease';
+            star.style.zIndex = '100001';
+            star.style.display = 'none';
+            star.setAttribute('data-id', id);
             star.setAttribute('data-collected', 'false');
 
-            star.addEventListener('click', (e) => {
+            star.addEventListener('click', function (e) {
                 e.stopPropagation();
-                if (star.getAttribute('data-collected') === 'true') return;
+                if (!gameActive) return;
+                if (this.getAttribute('data-collected') === 'true') return;
 
-                star.setAttribute('data-collected', 'true');
-                star.style.opacity = '0';
-                star.style.transform = 'scale(0)';
-                star.style.pointerEvents = 'none';
+                console.log('⭐ Звезда собрана!');
+                this.setAttribute('data-collected', 'true');
+                this.style.opacity = '0';
+                this.style.transform = 'scale(0)';
+                this.style.pointerEvents = 'none';
 
                 collectedStars++;
-                if (starsCountEl) starsCountEl.textContent = collectedStars;
+                if (starCountEl) starCountEl.textContent = collectedStars;
 
                 if (collectedStars === TOTAL_STARS) {
-                    if (starsMessageEl) starsMessageEl.textContent = '';
-                    if (starsGifEl) starsGifEl.style.display = 'block';
-
-                    const victoryMsg = document.createElement('div');
-                    victoryMsg.textContent = '✨ ВСЕ ЗВЁЗДЫ СОБРАНЫ! ✨';
-                    victoryMsg.style.cssText = `
-                    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                    background: #c0c0c0; padding: 20px 40px; border: 4px solid #ffffff;
-                    border-right-color: #000000; border-bottom-color: #000000;
-                    font-family: 'Courier New', monospace; font-size: 20px;
-                    font-weight: bold; z-index: 100000; text-align: center;
-                    box-shadow: 5px 5px 0px #000000;
-                `;
-                    document.body.appendChild(victoryMsg);
-                    setTimeout(() => {
-                        victoryMsg.style.opacity = '0';
-                        victoryMsg.style.transition = 'opacity 0.5s';
-                        setTimeout(() => victoryMsg.remove(), 500);
-                    }, 3000);
-                } else if (starsMessageEl) {
+                    gameActive = false;
+                    if (starMessageEl) starMessageEl.innerHTML = '🎉 ПОБЕДА! 🎉<br>Ты собрал все звёзды!<br>В награду ты допущен в лучший канал мира<br><a href="https://t.me/ooooouiiu" target="_blank" class="win95-btn" style="display: inline-block; margin-top: 10px; padding: 5px 15px; text-decoration: none; font-size: 12px;">Перейти в канал ➡️</a>';
+                    if (winGifEl) winGifEl.style.display = 'block';
+                    console.log('🎉 ПОБЕДА!');
+                } else if (starMessageEl) {
                     const remaining = TOTAL_STARS - collectedStars;
-                    starsMessageEl.textContent = `Осталось ${remaining} звёздочек! ⭐`;
+                    starMessageEl.innerHTML = `⭐ Осталось ${remaining} звёздочек! ⭐`;
                 }
             });
 
             return star;
         }
 
-        function initStarsOnMain() {
+        // Полное удаление и пересоздание звёзд с НОВЫМИ позициями
+        function regenerateStars() {
             if (!starsContainer) return;
+
+            // Очищаем контейнер
             starsContainer.innerHTML = '';
-            for (let i = 0; i < starPositions.length; i++) {
-                const star = createStar(i, starPositions[i]);
+            stars = [];
+
+            console.log('🔄 Генерация новых звёзд со случайными позициями...');
+
+            // Создаём новые звёзды с новыми позициями
+            for (let i = 0; i < TOTAL_STARS; i++) {
+                const position = getRandomPosition();
+                const star = createStar(i, position);
                 starsContainer.appendChild(star);
+                stars.push(star);
             }
+            console.log('✨ Создано звёзд:', stars.length);
         }
 
-        function initGame() {
-            initStarsOnMain();
+        function showAllStars() {
+            stars.forEach(star => {
+                if (star.getAttribute('data-collected') !== 'true') {
+                    star.style.display = 'block';
+                    star.style.opacity = '1';
+                    star.style.transform = 'scale(1)';
+                    star.style.pointerEvents = 'auto';
+                }
+            });
+            console.log('✨ Звёзды показаны');
         }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initGame);
-        } else {
-            initGame();
+        function hideAllStars() {
+            stars.forEach(star => {
+                star.style.display = 'none';
+            });
+            console.log('✨ Звёзды скрыты');
         }
-    })();
+
+        function resetGame() {
+            collectedStars = 0;
+            gameActive = false;
+            if (starCountEl) starCountEl.textContent = '0';
+            if (winGifEl) winGifEl.style.display = 'none';
+            if (starMessageEl) starMessageEl.innerHTML = '🔒 Нажми "Старт" чтобы начать! 🔒';
+
+            // ПОЛНОСТЬЮ пересоздаём звёзды с новыми позициями
+            regenerateStars();
+            hideAllStars();
+            console.log('🔄 Игра сброшена, звёзды пересозданы');
+        }
+
+        function startGame() {
+            if (gameActive) return;
+            console.log('🎮 СТАРТ ИГРЫ!');
+
+            // Пересоздаём звёзды с новыми позициями ПРИ КАЖДОМ СТАРТЕ
+            regenerateStars();
+
+            collectedStars = 0;
+            gameActive = true;
+
+            if (starCountEl) starCountEl.textContent = '0';
+            if (starMessageEl) starMessageEl.innerHTML = '⭐ Собери все звёздочки! ⭐';
+            if (winGifEl) winGifEl.style.display = 'none';
+
+            showAllStars();
+        }
+
+        // Инициализация
+        regenerateStars();  // звёзды созданы
+        hideAllStars();     // скрыты
+
+        startBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            startGame();
+        });
+
+        console.log('🎮 Игра готова! При каждом старте звёзды будут в НОВЫХ местах');
+    });
+
 })();

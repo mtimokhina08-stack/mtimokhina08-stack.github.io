@@ -7,65 +7,81 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ТЯН -->
+    <body style="background-image: url('img/fon2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
     <div class="fixed-corner">
         <div class="corner-container">
-            <img src="img/girl2.png"
-                 alt="Персонаж"
-                 class="corner-img"
-                 id="dynamicImg"
-                 onmouseover="this.src='img/girl1.png'"
-                 onmouseout="this.src='img/girl2.png'">
+            <img src="img/girl2.png" alt="Персонаж" class="corner-img" id="dynamicImg"
+                 onmouseover="this.src='img/girl1.png'" onmouseout="this.src='img/girl2.png'">
         </div>
     </div>
-    <!-- ГРАДИЕНТНАЯ ПЛАШКА СВЕРХУ -->
+
+    <div class="top-gifs">
+        <img src="img/unicorn.gif" alt="Левая гифка" class="top-gif top-gif--left">
+    </div>
+
     <div class="arcade-banner">
         <div class="arcade-banner__content">
-            <span class="arcade-sparkle">✦ ∙ ✦ ₊ ✦</span>
-            <span class="arcade-txt--pink">ЧЕМ ДАЛЬШЕ В ЛЕС </span>
-            <span class="arcade-txt--cyan">IF ELSE IF ELSE</span>
-            <span class="arcade-sparkle">✦ ₊ ✦ ₊ ✦</span>
+            <span class="arcade-sparkle"> ✦   ∙   ✦   ₊   ✦ </span>
+
         </div>
     </div>
 
-    <div style="height: 10px;"></div>  <!-- Распорка -->
-    <!-- ВТОРАЯ ПЛАШКА (не растянутая, ниже) -->
     <div class="arcade-banner arcade-banner--inline">
         <div class="arcade-banner__content">
-            <span class="arcade-sparkle">✧ ☾ ✧</span>
+            <span class="arcade-sparkle"> ✧   ☾   ✧ </span>
             <span class="arcade-txt--pink">УМНЫЙ ЧЕЛОВЕК В ОЧКАХ</span>
             <span class="arcade-txt--cyan">СКАЧАТЬ БЕСПЛАТНО</span>
-            <span class="arcade-sparkle">✧ ☽ ✧</span>
+            <span class="arcade-sparkle"> ✧   ☽   ✧ </span>
         </div>
     </div>
 
-    <!-- СЕКЦИЯ С ПЛАШКАМИ (появляются при скролле) -->
     <section class="cards-section" id="cardsSection">
         <div class="cards-stage" id="cardsStage">
-
-            <!-- Плашка 1 – крупная XL -->
-            <div class="card card--xl card--tilt-left card--win95" data-card="1">
+            
+             <!-- ПЛАШКА С ФОТО -->
+            <div class="card card--xl card--win95" data-card="1">
                 <div class="window-titlebar">
-                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-title">📸 ОТБОРНЫЙ ИНТЕРНЕТ СЛОП </div>
                     <div class="window-buttons">
-                        <span class="window-btn window-btn-min">─</span>
-                        <span class="window-btn window-btn-max">□</span>
+                        <span class="window-btn">─</span>
+                        <span class="window-btn">□</span>
                         <span class="window-btn window-btn-close">✕</span>
                     </div>
                 </div>
-                <div class="card__content">
-                    <div class="card__placeholder">ТУТ КРУТЫЕ КАРТИНКИ СКРОЛЛ</div>
+                <div class="card__content" style="padding: 8px; display: flex; flex-direction: column; height: calc(100% - 35px);">
+                    <div style="font-size: 11px; margin-bottom: 8px; color: #000; text-align: center;">Ставьте класс если нравятся мои картинки! :33</div>
+                    <div class="photo-scroll-vertical">
+                        <div class="photo-list">
+                            <div class="photo-frame">
+                                <img src="img/photo1.jpg" alt="Фото 1" class="scroll-photo-vertical">
+                            </div>
+                            <div class="photo-frame">
+                                <img src="img/photo2.jpg" alt="Фото 2" class="scroll-photo-vertical">
+                            </div>
+                            <div class="photo-frame">
+                                <img src="img/photo3.jpg" alt="Фото 3" class="scroll-photo-vertical">
+                            </div>
+                            <div class="photo-frame">
+                                <img src="img/photo4.jpg" alt="Фото 4" class="scroll-photo-vertical">
+                            </div>
+                            <div class="photo-frame">
+                                <img src="img/photo5.jpg" alt="Фото 5" class="scroll-photo-vertical">
+                            </div>
+                            <div class="photo-frame">
+                                <img src="img/photo6.jpg" alt="Фото 6" class="scroll-photo-vertical">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Плашка 2 – средняя, справа, приподнята -->
-            <div class="card card--md card--lifted card--tilt-right card--win95" data-card="2">
+            <div class="card card--md card--win95" data-card="2">
                 <div class="window-titlebar">
-                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-title"> 📄  YOUR MEMES</div>
                     <div class="window-buttons">
-                        <span class="window-btn window-btn-min">─</span>
-                        <span class="window-btn window-btn-max">□</span>
-                        <span class="window-btn window-btn-close">✕</span>
+                        <span class="window-btn">─</span>
+                        <span class="window-btn">□</span>
+                        <span class="window-btn window-btn-close"> ✕ </span>
                     </div>
                 </div>
                 <div class="card__content">
@@ -73,14 +89,13 @@
                 </div>
             </div>
 
-            <!-- Плашка 3 – высокая узкая, наезжает на соседей -->
-            <div class="card card--tall card--offset-down card--win95" data-card="3">
+            <div class="card card--tall card--win95" data-card="3">
                 <div class="window-titlebar">
-                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-title"> 📄  YOUR MEMES</div>
                     <div class="window-buttons">
-                        <span class="window-btn window-btn-min">─</span>
-                        <span class="window-btn window-btn-max">□</span>
-                        <span class="window-btn window-btn-close">✕</span>
+                        <span class="window-btn">─</span>
+                        <span class="window-btn">□</span>
+                        <span class="window-btn window-btn-close"> ✕ </span>
                     </div>
                 </div>
                 <div class="card__content">
@@ -88,14 +103,13 @@
                 </div>
             </div>
 
-            <!-- Плашка 4 – маленькая, «зажатая» -->
-            <div class="card card--small card--tilt-left card--win95" data-card="4">
+            <div class="card card--small card--win95" data-card="4">
                 <div class="window-titlebar">
-                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-title"> 📄  YOUR MEMES</div>
                     <div class="window-buttons">
-                        <span class="window-btn window-btn-min">─</span>
-                        <span class="window-btn window-btn-max">□</span>
-                        <span class="window-btn window-btn-close">✕</span>
+                        <span class="window-btn">─</span>
+                        <span class="window-btn">□</span>
+                        <span class="window-btn window-btn-close"> ✕ </span>
                     </div>
                 </div>
                 <div class="card__content">
@@ -103,29 +117,27 @@
                 </div>
             </div>
 
-            <!-- Плашка 5 – широкая приземистая -->
-            <div class="card card--wide card--tilt-right card--win95" data-card="5">
+            <div class="card card--wide card--win95" data-card="5">
                 <div class="window-titlebar">
-                    <div class="window-title">📄 YOUR MEMES</div>
+                    <div class="window-title"> 📄  YOUR MEMХИХИES</div>
                     <div class="window-buttons">
-                        <span class="window-btn window-btn-min">─</span>
-                        <span class="window-btn window-btn-max">□</span>
-                        <span class="window-btn window-btn-close">✕</span>
+                        <span class="window-btn">─</span>
+                        <span class="window-btn">□</span>
+                        <span class="window-btn window-btn-close"> ✕ </span>
                     </div>
                 </div>
                 <div class="card__content">
-                    <div class="card__placeholder">ТУТ АНИМЕ/МАНГА</div>
+                    <div class="card__placeholder">ТУТ АНИМЕ/МАНГА ЕЕЕЕЕ</div>
                 </div>
             </div>
 
-            <!-- Плашка с ссылками на соцсети -->
             <div class="card card--win95 card--social" id="cardSocial">
                 <div class="window-titlebar">
-                    <span class="window-title">🔗 СВЯЗЬ РОДНОЙ</span>
+                    <span class="window-title"> 🔗  СВЯЗЬ РОДНОЙ</span>
                     <div class="window-buttons">
                         <span class="window-btn">_</span>
                         <span class="window-btn">□</span>
-                        <span class="window-btn window-btn-close">✕</span>
+                        <span class="window-btn window-btn-close"> ✕ </span>
                     </div>
                 </div>
                 <div class="card__content">
@@ -143,68 +155,68 @@
                 </div>
             </div>
 
-        </div> <!-- закрытие cards-stage -->
-    </section> <!-- закрытие cards-section -->
-    <!-- СИНИЙ ЭКРАН СМЕРТИ (BSOD) -->
+        </div>
+    </section>
+
     <div id="bsod" class="bsod-overlay">
         <div class="bsod-container">
             <div class="win95-banner bsod-window">
                 <div class="win95-banner__inner">
                     <div class="bsod-content">
-                        <div class="bsod-emoticon">:(</div>
-                        <div class="bsod-title">Ваша система обнаружила критическую ошибку</div>
-                        <div class="bsod-message">
-                            <p>Похоже, вы закрыли важное окно. Это действие необратимо.</p>
-                            <p>Ну ломай ломай, мы же миллионеры, не тебе же чинить</p>
-                            <p>Если это повторится, обратитесь к администратору (он пошлет вас/ненег).</p>
-                        </div>
-                        <div class="bsod-code">
-                            *** STOP: 0x0000001E (0xC0000005, 0xFDE38AF9, 0x00000000, 0x7FFE0000)  (－ｚ－)
-                            <br>
-                            *** window_close.exe - Address FDE38AF9 base at FDE38000
-                            <br>
-                            *** System halted (zZz...)
+                        <div class="bsod-left">
+                            <div class="bsod-emoticon">:(</div>
+                            <div class="bsod-title">Ваша система обнаружила критическую ошибку</div>
+                            <div class="bsod-message">
+                                <p>Похоже, вы закрыли важное окно. Это действие необратимо.</p>
+                                <p>Ну ломай ломай, мы же миллионеры, не тебе же чинить</p>
+                                <p>Если это повторится, обратитесь к администратору (он пошлет вас/ненег).</p>
+                            </div>
+                            <div class="bsod-code">
+                                *** STOP: 0x0000001E (0xC0000005, 0xFDE38AF9, 0x00000000, 0x7FFE0000)<br>
+                                *** window_close.exe - Address FDE38AF9 base at FDE38000<br>
+                                *** System halted (zZz...)
+                            </div>
                         </div>
                         <div class="bsod-right">
-                            <img src="img/Sleep.gif"
-                                 alt="BSOD GIF"
-                                 class="bsod-gif">
+                            <img src="img/Sleep.gif" alt="BSOD GIF" class="bsod-gif">
                         </div>
-                        <div class="bsod-footer">
-                            <button id="bsod-restart" class="win95-btn">Перезагрузить </button>
-                        </div>
+                    </div>
+                    <div class="bsod-footer">
+                        <button id="bsod-restart" class="win95-btn">Перезагрузить</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="top-gifs">
-        <img src="img/unicorn.gif" alt="Левая гифка" class="top-gif top-gif--left">
-        <img src="img/akira.gif" alt="Правая гифка" class="top-gif top-gif--right">
-    </div>
-
     <!-- ===============================================
-    МИНИ-ИГРА: СБОР ЗВЁЗДОЧЕК
-    ============================================= -->
-    <!-- Плашка со счётчиком -->
-    <div class="card card--game-counter card--win95" id="gameCounterCard">
+         МИНИ-ИГРА: СБОР ЗВЁЗДОЧЕК
+    =============================================== -->
+    <!-- Контейнер для звёзд -->
+    <div id="starsContainer" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10000;"></div>
+
+    <!-- Плашка с игрой -->
+    <div class="card card--win95" id="gameCard" style="position: absolute; top: 1000px; left: 20px; width: 260px; min-height: 160px; z-index: 200; cursor: default;">
         <div class="window-titlebar">
+            <span class="window-title">⭐ ЗВЁЗДНАЯ ИГРА</span>
+            <div class="window-buttons">
+                <span class="window-btn">_</span>
+                <span class="window-btn">□</span>
+                <span class="window-btn window-btn-close">✕</span>
+            </div>
         </div>
-        <div class="card__content">
-            <div class="game-counter-content">
-                <div class="stars-count" id="starsCount">0</div>
-                <div class="stars-total">/ 10</div>
-                <div class="stars-message" id="starsMessage">Собери все звёздочки! ⭐</div>
-                <div class="stars-gif" id="starsGif" style="display: none;">
-                    <img src="img/cat.gif" alt="Поздравление!" class="celebration-gif">
-                </div>
+        <div class="card__content" style="text-align: center; padding: 12px;">
+            <div>
+                <span id="starCount" style="font-size: 32px; font-weight: bold; color: #000080;">0</span>
+                <span style="font-size: 24px;"> / 10</span>
+            </div>
+            <div id="starMessage" style="font-size: 11px; margin: 10px 0; color: #000;">🔒 Нажми "Старт" чтобы начать!</div>
+            <button id="startGameBtn" class="win95-btn" style="margin: 5px auto; display: block; width: 90%;">⭐ НАЧАТЬ ИГРУ ⭐</button>
+            <div id="winGif" style="display: none; margin-top: 10px;">
+                <img src="img/cat.gif" alt="Поздравление!" style="max-width: 80px;">
             </div>
         </div>
     </div>
-
-    <!-- Контейнер для звёздочек -->
-    <div id="starsContainer" class="stars-container"></div>
     <script src="script.js"></script>
 </body>
 </html>

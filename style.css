@@ -1,14 +1,4 @@
-﻿/* ===============================================
-   ГЛОБАЛЬНЫЕ СТИЛИ И ФОН
-   ============================================= */
-
-body {
-    background-image: url('img/fon2.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+﻿
 /*==================================================
   ТЯН НА ФОНЕ
 ==================================================*/
@@ -40,68 +30,31 @@ body {
         filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
     }
 /* ===============================================
-   ГИФКИ ПО БОКАМ СВЕРХУ (ПОД ВЕРХНЕЙ ПЛАШКОЙ)
+   ЛЕВАЯ ГИФКА СВЕРХУ
    ============================================= */
-
-.top-gifs {
-    position: fixed;
-    top: 8%; /* Процент от верха (под верхней плашкой) */
-    left: 0;
-    right: 0;
-    width: 100%;
-    pointer-events: none;
-    z-index: 50;
-}
 
 .top-gif {
     position: absolute;
-    width: min(300px, 50vw); /* Не больше 80px, но не шире 8% экрана */
+    top: 100px;
+    left: 3%;
+    width: min(250px, 40vw);
     height: auto;
-    pointer-events: auto;
-    transition: transform 0.3s ease;
     cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 50;
 }
 
-.top-gif--left {
-    left: 3%; /* 3% от левого края */
-    top: 0;
-}
-
-.top-gif--right {
-    right: 3%; /* 3% от правого края */
-    top: 0;
-}
+    .top-gif:hover {
+        transform: scale(1.05);
+    }
 
 /* Адаптив для телефонов */
-@media (max-width: 2300px) {
-    .top-gif {
-        width: min(200px, 50vw);
-    }
-
-    .top-gif--left {
-        left: 2%;
-    }
-
-    .top-gif--right {
-        right: 2%;
-    }
-}
 @media (max-width: 700px) {
     .top-gif {
-        width: min(200px, 10vw);
-        top: 0;
-    }
-
-    .top-gif--left {
+        width: min(150px, 30vw);
+        top: 200px;
         left: 2%;
-        top: 0;
     }
-
-    .top-gif--right {
-        right: 2%;
-        top: 0;
-    }
-    
 }
 /* ===============================================
 ВЕРХНЯЯ ПЛАШКА — СТИЛЬ WINDOWS 95 С ГРАДИЕНТОМ
@@ -203,44 +156,44 @@ body {
         transform: rotate(-0.5deg);
     }
 }
-    /* ===============================================
+/* ===============================================
    СЕКЦИЯ С ПЛАШКАМИ
    ============================================= */
 
-    .cards-section {
-        padding: 15rem 2rem 8rem;
-        position: relative;
-        z-index: 3;
-    }
+.cards-section {
+    padding: 15rem 2rem 8rem;
+    position: relative;
+    z-index: 3;
+}
 
-    .cards-stage {
-        position: relative;
-        max-width: 1400px;
-        margin: 0 auto;
-        min-height: 750px;
-    }
+.cards-stage {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 750px;
+}
 
-    /* ===============================================
+/* ===============================================
    БАЗОВАЯ ПЛАШКА
    ============================================= */
 
-    .card {
-        position: absolute;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        will-change: transform, opacity;
-        opacity: 0;
-        transform: translateY(60px) scale(0.95);
-        transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.2s;
-    }
+.card {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.2s;
+}
 
-        .card.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+    .card.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 
 /* ===============================================
    РАЗМЕРЫ ПЛАШЕК — ПРОЦЕНТНОЕ ПОЗИЦИОНИРОВАНИЕ
@@ -286,7 +239,6 @@ body {
     z-index: 15;
 }
 
-/* ДОБАВЛЕНО: плашка accent */
 .card--accent {
     width: min(280px, 18vw);
     height: min(140px, 13vh);
@@ -296,40 +248,39 @@ body {
     background: rgba(80, 60, 120, 0.85);
 }
 
-    /* ===============================================
+/* ===============================================
    ЗАДЕРЖКИ ПОЯВЛЕНИЯ (БЕЗ ИЗМЕНЕНИЙ)
    ============================================= */
 
-    .card:nth-child(1).visible {
-        transition-delay: 0.05s;
-    }
+.card:nth-child(1).visible {
+    transition-delay: 0.05s;
+}
 
-    .card:nth-child(2).visible {
-        transition-delay: 0.20s;
-    }
+.card:nth-child(2).visible {
+    transition-delay: 0.20s;
+}
 
-    .card:nth-child(3).visible {
-        transition-delay: 0.35s;
-    }
+.card:nth-child(3).visible {
+    transition-delay: 0.35s;
+}
 
-    .card:nth-child(4).visible {
-        transition-delay: 0.50s;
-    }
+.card:nth-child(4).visible {
+    transition-delay: 0.50s;
+}
 
-    .card:nth-child(5).visible {
-        transition-delay: 0.65s;
-    }
+.card:nth-child(5).visible {
+    transition-delay: 0.65s;
+}
 
-    .card:nth-child(6).visible {
-        transition-delay: 0.80s;
-    }
+.card:nth-child(6).visible {
+    transition-delay: 0.80s;
+}
 
 
-    /* ===============================================
-   СТИЛЬ WINDOWS 95 (ПЕРЕОПРЕДЕЛЕНИЕ СТЕКЛА)
+/* ===============================================
+   СТИЛЬ WINDOWS 95
    ============================================= */
 
-/* Стиль Windows 95 для плашек */
 .card--win95 {
     background: #ece9d8 !important;
     backdrop-filter: none !important;
@@ -414,6 +365,7 @@ body {
     cursor: default;
     color: #000000;
 }
+
 .window-btn-close:hover {
     background: #ff0000 !important;
     color: #ffffff !important;
@@ -462,6 +414,7 @@ body {
     display: block;
     border-radius: 6px;
 }
+
 @media (max-width: 800px) {
     .cards-section {
         padding: 13rem 1.5rem 4rem;
@@ -506,251 +459,287 @@ body {
         min-height: 150px;
     }
 }
-    /* ===============================================
+/* ===============================================
+   СКРОЛЛ ФОТОГРАФИЙ В ПЛАШКЕ
+   ============================================= */
+
+/* ===============================================
+   ВЕРТИКАЛЬНЫЙ СКРОЛЛ ФОТОГРАФИЙ (КАК НА РЕФЕРЕНСЕ)
+   ============================================= */
+
+.photo-scroll-vertical {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #ece9d8;
+    border: 1px solid #a0a0a0;
+    margin-top: 4px;
+    padding: 6px;
+}
+
+.photo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.photo-frame {
+    background: #ffffff;
+    border: 2px solid #808080;
+    padding: 8px;
+    box-shadow: inset 1px 1px 0px #ffffff, 1px 1px 0px #000000;
+    text-align: center;
+}
+
+.scroll-photo-vertical {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Стилизация вертикального скролла (Windows 95) */
+.photo-scroll-vertical::-webkit-scrollbar {
+    width: 16px;
+}
+
+.photo-scroll-vertical::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border-left: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.photo-scroll-vertical::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border-left: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    min-height: 30px;
+}
+
+    .photo-scroll-vertical::-webkit-scrollbar-thumb:hover {
+        background: #a0a0a0;
+    }
+
+.photo-scroll-vertical::-webkit-scrollbar-button {
+    background: #c0c0c0;
+    border: 1px solid #000000;
+    height: 16px;
+}
+.photo-frame {
+    background: #ffffff;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    padding: 8px;
+    margin: 4px;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.scroll-photo-vertical {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: inset 0 0 0 1px #e0e0e0;
+}
+
+
+/* ===============================================
    СИНИЙ ЭКРАН СМЕРТИ (BSOD)
    ============================================= */
 
-    .bsod-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #0000aa;
-        z-index: 9999;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Courier New', 'MS Sans Serif', monospace;
-    }
-
-        .bsod-overlay.active {
-            display: flex;
-        }
-
-    .bsod-container {
-        width: 90%;
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    /* BSOD окно в стиле Win95 */
-    .bsod-window {
-        background: #c0c0c0;
-        padding: 4px;
-    }
-
-        .bsod-window .win95-banner__inner {
-            background: #0000aa;
-            padding: 20px;
-        }
-
-    /* Контент синего экрана — две колонки */
-    .bsod-content {
-        color: #ffffff;
-        text-align: left;
-        display: flex;
-        gap: 30px;
-        flex-wrap: wrap;
-    }
-
-    /* Левая колонка с текстом */
-    .bsod-left {
-        flex: 2;
-        min-width: 200px;
-    }
-
-    /* Правая колонка с гифкой */
-    .bsod-right {
-        flex: 1;
-        min-width: 150px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-    }
-
-    /* Гифка */
-    .bsod-gif {
-        max-width: 100%;
-        height: auto;
-        image-rendering: pixelated;
-        border: 2px solid #ffffff;
-        box-shadow: 3px 3px 0px #808080;
-    }
-
-    .bsod-emoticon {
-        font-size: 48px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    .bsod-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    .bsod-message {
-        font-size: 16px;
-        line-height: 1.5;
-        margin-bottom: 20px;
-    }
-
-        .bsod-message p {
-            margin: 8px 0;
-        }
-
-    .bsod-code {
-        font-size: 14px;
-        color: #a0a0a0;
-        margin-bottom: 20px;
-        background: rgba(0, 0, 0, 0.3);
-        padding: 10px;
-        border-left: 2px solid #ffffff;
-    }
-
-    /* Кнопка в стиле Windows 95 */
-    .win95-btn {
-        background: #c0c0c0;
-        border: none;
-        padding: 8px 20px;
-        font-family: 'Courier New', 'MS Sans Serif', monospace;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        position: relative;
-        border-top: 2px solid #ffffff;
-        border-left: 2px solid #ffffff;
-        border-right: 2px solid #000000;
-        border-bottom: 2px solid #000000;
-    }
-
-        .win95-btn:active {
-            border-top: 2px solid #000000;
-            border-left: 2px solid #000000;
-            border-right: 2px solid #ffffff;
-            border-bottom: 2px solid #ffffff;
-        }
-
-    .bsod-footer {
-        text-align: center;
-        margin-top: 20px;
-        position: relative;
-    }
-
-        .bsod-footer::after {
-            content: '_';
-            animation: bsodBlink 1s step-end infinite;
-            margin-left: 10px;
-            color: #ffffff;
-            display: inline-block;
-        }
-
-    @keyframes bsodBlink {
-        0%, 100% {
-            opacity: 1;
-        }
-
-        50% {
-            opacity: 0;
-        }
-    }
-
-    /* Адаптация для мобилок */
-    @media (max-width: 700px) {
-        .bsod-content {
-            flex-direction: column;
-        }
-
-        .bsod-right {
-            order: -1;
-            margin-bottom: 20px;
-        }
-
-        .bsod-gif {
-            max-width: 120px;
-        }
-
-        .bsod-emoticon {
-            font-size: 32px;
-        }
-
-        .bsod-title {
-            font-size: 18px;
-        }
-
-        .bsod-message {
-            font-size: 12px;
-        }
-
-        .bsod-code {
-            font-size: 10px;
-            overflow-x: auto;
-        }
-
-        .win95-btn {
-            padding: 6px 16px;
-            font-size: 12px;
-        }
-    }
-/* ===============================================
-   МИНИ-ИГРА: ЗВЁЗДОЧКИ
-   ============================================= */
-
-/* Плашка со счётчиком */
-.card--game-counter {
-    position: fixed !important;
-    bottom: 20px !important;
-    left: 20px !important;
-    top: auto !important;
-    right: auto !important;
-    width: 200px !important;
-    height: 250px !important;
-    z-index: 200 !important;
-    cursor: default !important;
-}
-
-.game-counter-content {
-    text-align: center;
-    font-family: 'Courier New', monospace;
-    width: 100%;
-}
-
-.stars-count {
-    font-size: 32px;
-    font-weight: bold;
-    color: #000080;
-    display: inline-block;
-}
-
-.stars-total {
-    font-size: 24px;
-    color: #000000;
-    display: inline-block;
-    margin-left: 5px;
-}
-
-.stars-message {
-    font-size: 10px;
-    color: #000000;
-    margin-top: 8px;
-    font-family: 'Courier New', monospace;
-}
-
-.celebration-gif {
-    max-width: 60px;
-    margin-top: 5px;
-}
-.stars-container {
+.bsod-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 10000 !important; /* Очень высокий слой */
+    background-color: #0000aa;
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', 'MS Sans Serif', monospace;
 }
+
+    .bsod-overlay.active {
+        display: flex;
+    }
+
+.bsod-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* BSOD окно в стиле Win95 */
+.bsod-window {
+    background: #c0c0c0;
+    padding: 4px;
+}
+
+    .bsod-window .win95-banner__inner {
+        background: #0000aa;
+        padding: 20px;
+    }
+
+/* Контент синего экрана — две колонки */
+.bsod-content {
+    color: #ffffff;
+    text-align: left;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Левая колонка с текстом */
+.bsod-left {
+    flex: 2;
+    min-width: 200px;
+}
+
+/* Правая колонка с гифкой */
+.bsod-right {
+    flex: 1;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Гифка */
+.bsod-gif {
+    max-width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    border: 2px solid #ffffff;
+    box-shadow: 3px 3px 0px #808080;
+}
+
+.bsod-emoticon {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.bsod-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.bsod-message {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+    .bsod-message p {
+        margin: 8px 0;
+    }
+
+.bsod-code {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-left: 2px solid #ffffff;
+}
+
+/* Кнопка в стиле Windows 95 */
+.win95-btn {
+    background: #c0c0c0;
+    border: none;
+    padding: 8px 20px;
+    font-family: 'Courier New', 'MS Sans Serif', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+    .win95-btn:active {
+        border-top: 2px solid #000000;
+        border-left: 2px solid #000000;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+    }
+
+.bsod-footer {
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+    .bsod-footer::after {
+        content: '_';
+        animation: bsodBlink 1s step-end infinite;
+        margin-left: 10px;
+        color: #ffffff;
+        display: inline-block;
+    }
+
+@keyframes bsodBlink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Адаптация для мобилок */
+@media (max-width: 700px) {
+    .bsod-content {
+        flex-direction: column;
+    }
+
+    .bsod-right {
+        order: -1;
+        margin-bottom: 20px;
+    }
+
+    .bsod-gif {
+        max-width: 120px;
+    }
+
+    .bsod-emoticon {
+        font-size: 32px;
+    }
+
+    .bsod-title {
+        font-size: 18px;
+    }
+
+    .bsod-message {
+        font-size: 12px;
+    }
+
+    .bsod-code {
+        font-size: 10px;
+        overflow-x: auto;
+    }
+
+    .win95-btn {
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+}
+/* ===============================================
+   ЗВЁЗДОЧКИ ДЛЯ ИГРЫ
+   ============================================= */
 
 .star {
     position: absolute;
@@ -759,51 +748,13 @@ body {
     cursor: pointer;
     pointer-events: auto;
     transition: all 0.2s ease;
-    z-index: 100000 !important; /* Поверх всего */
+    z-index: 100001;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    display: none;
 }
 
-    .star:hover {
-        transform: scale(1.2);
-    }
-/* Плашка со счётчиком */
-.card--game-counter {
-    position: fixed !important;
-    bottom: 20px !important;
-    left: 20px !important;
-    top: auto !important;
-    right: auto !important;
-    width: 200px !important;
-    height: 130px !important;
-    cursor: default !important;
-}
-
-.star--collected {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0);
-}
-/* ===============================================
-   АНИМАЦИЯ ПОКАЧИВАНИЯ ДЛЯ ЗВЁЗДОЧЕК
-   ============================================= */
-
-@keyframes starSway {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(5deg);
-    }
-
-    75% {
-        transform: rotate(-5deg);
-    }
-}
-
-.star {
-    animation: starSway 3s ease-in-out infinite;
-    transform-origin: center center;
+.star:hover {
+    transform: scale(1.2);
 }
 /* ===============================================
    АДАПТИВНОСТЬ (ТОЛЬКО ОДИН БЛОК)
@@ -861,8 +812,42 @@ body {
         right: auto !important;
     }
 }
+
 @media (max-width: 2300px) {
     .corner-img {
         width: 150px; /* На телефонах поменьше, но всё ещё видно */
     }
 }
+/* ===============================================
+   АДАПТИВ ДЛЯ ТЕЛЕФОНОВ (НОВЫЙ ПОРЯДОК ПЛАШЕК)
+   ============================================= */
+
+@media (max-width: 800px) {
+    .card--social {
+        order: 1;
+    }
+    .card--md {
+        order: 2;
+    }
+
+    .card--tall {
+        order: 3;
+    }
+
+    .card--small {
+        order: 4;
+    }
+
+    .card--wide {
+        order: 5;
+    }
+
+    .card--accent {
+        order: 6;
+    }
+
+    .card--xl {
+        order: 7;
+    }
+}
+

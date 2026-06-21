@@ -4,8 +4,8 @@
 ==================================================*/
 .fixed-corner {
     position: fixed;
-    bottom: 0; /* ПРИЖАТО к нижнему краю */
-    right: 0; /* Прижато к правому краю */
+    bottom: 0;
+    right: 0;
     z-index: 1000;
     pointer-events: auto;
     line-height: 0;
@@ -18,7 +18,7 @@
 }
 
 .corner-img {
-    width: 900px;
+    width: 500px;
     height: auto;
     display: block;
     transition: transform 0.3s, filter 0.2s;

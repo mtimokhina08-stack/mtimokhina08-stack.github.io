@@ -75,47 +75,79 @@
                     </div>
                 </div>
 
-                <div class="card card--md card--win95" data-card="2">
-                    <div class="window-titlebar">
-                        <div class="window-title"> 📄  YOUR MEMES</div>
-                        <div class="window-buttons">
-                            <span class="window-btn">─</span>
-                            <span class="window-btn">□</span>
-                            <span class="window-btn window-btn-close"> ✕ </span>
-                        </div>
-                    </div>
-                    <div class="card__content">
-                        <div class="card__placeholder">ТЕКСТ О СЕБЕ</div>
-                    </div>
-                </div>
-
-                <div class="card card--tall card--win95" data-card="3">
-                    <div class="window-titlebar">
-                        <div class="window-title"> 📄  YOUR MEMES</div>
-                        <div class="window-buttons">
-                            <span class="window-btn">─</span>
-                            <span class="window-btn">□</span>
-                            <span class="window-btn window-btn-close"> ✕ </span>
-                        </div>
-                    </div>
-                    <div class="card__content">
-                        <div class="card__placeholder">ГРУППЫ СКРОЛЛ</div>
-                    </div>
-                </div>
-
+                <!-- Плашка с гостевой книгой -->
                 <div class="card card--small card--win95" data-card="4">
                     <div class="window-titlebar">
-                        <div class="window-title"> 📄  YOUR MEMES</div>
+                        <div class="window-title"> 📖  ГОСТЕВАЯ КНИГА</div>
                         <div class="window-buttons">
                             <span class="window-btn">─</span>
                             <span class="window-btn">□</span>
                             <span class="window-btn window-btn-close"> ✕ </span>
                         </div>
                     </div>
-                    <div class="card__content">
-                        <div class="card__placeholder">ГИФКА(??)</div>
+                    <div class="card__content" style="padding: 10px; background: #c0c0c0;">
+
+                        <!-- Форма для отправки мнения -->
+                        <form id="guestbookForm" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px;">
+                            <div style="display: flex; gap: 4px;">
+                                <input type="text" id="guestName" placeholder="Твоё имя" style="flex: 1; border: 2px inset #dfdfdf; background: white; padding: 2px 6px;">
+                                <button type="submit" class="win95-btn-player" style="padding: 2px 12px;">📨</button>
+                            </div>
+                            <textarea id="guestText" placeholder="Напиши мнение..." rows="2" style="border: 2px inset #dfdfdf; background: white; padding: 2px 6px; font-family: 'Courier New', monospace; font-size: 10px; resize: vertical;"></textarea>
+                        </form>
+
+                        <!-- Контейнер для списка сообщений -->
+                        <div id="guestbookContainer" style="max-height: 120px; overflow-y: auto; background: white; border: 2px inset #dfdfdf; padding: 4px;">
+                            <div class="guestbook-empty">Загрузка...</div>
+                        </div>
+
                     </div>
                 </div>
+
+                <!-- МУЗИКА -->
+                <div class="card card--tall card--win95" data-card="3">
+                    <div class="window-titlebar">
+                        <div class="window-title"> 🎵  МУЗЫКАЛЬНЫЙ ПЛЕЕР</div>
+                        <div class="window-buttons">
+                            <span class="window-btn">─</span>
+                            <span class="window-btn">□</span>
+                            <span class="window-btn window-btn-close"> ✕ </span>
+                        </div>
+                    </div>
+                    <div class="card__content" style="display: flex; flex-direction: column; gap: 6px; padding: 10px; background: #c0c0c0;">
+
+                        <!-- Дисплей (как у старого плеера) -->
+                        <div class="win95-display">
+                            <div class="win95-screen" id="nowPlaying">▶  ГОТОВ К ВОСПРОИЗВЕДЕНИЮ</div>
+                            <div class="win95-progress">
+                                <div class="win95-progress-fill" id="progressFill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Кнопки управления -->
+                        <div class="win95-controls">
+                            <button class="win95-btn-player" data-action="prev">⏮</button>
+                            <button class="win95-btn-player" data-action="play">▶</button>
+                            <button class="win95-btn-player" data-action="pause">⏸</button>
+                            <button class="win95-btn-player" data-action="next">⏭</button>
+                            <button class="win95-btn-player" data-action="stop">⏹</button>
+                        </div>
+
+                        <!-- Список треков -->
+                        <div class="win95-list" id="trackList">
+                            <div class="win95-list-item active" data-track="0">📁 01 — Моя мелодия</div>
+                            <div class="win95-list-item" data-track="1">📁 02 — Второй трек</div>
+                            <div class="win95-list-item" data-track="2">📁 03 — Ещё один</div>
+                            <div class="win95-list-item" data-track="3">📁 04 — Любимый</div>
+                            <div class="win95-list-item" data-track="4">📁 05 — Настроение</div>
+                        </div>
+
+                        <!-- Статус -->
+                        <div class="win95-status" id="statusBar">Готово</div>
+
+                    </div>
+                </div>
+
                 <!-- ПЛАШКА АНИМЕ -->
                 <div class="card card--anime card--win95" data-card="5">
                     <div class="window-titlebar">
@@ -240,21 +272,7 @@
                     </div>
                 </div>
 
-                <!-- Модальное окно для большого постера -->
-                <div id="posterModal" class="poster-modal">
-                    <div class="poster-modal-content">
-                        <div class="window-titlebar">
-                            <span class="window-title">🎞️ ПРЕВЬЮ ПОСТЕРА</span>
-                            <div class="window-buttons">
-                                <span class="window-btn window-btn-close" id="closePosterBtn">✕</span>
-                            </div>
-                        </div>
-                        <div class="poster-modal-inner">
-                            <img id="posterImage" src="" alt="Постер">
-                            <div id="posterTitle" class="poster-title"></div>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- ПЛАШКА СОЦ ЕТИ -->
                 <div class="card card--win95 card--social" id="cardSocial">
                     <div class="window-titlebar">

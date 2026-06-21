@@ -201,7 +201,7 @@
 
 .card--mem {
     width: min(340px, 22vw);
-    height: min(400px, 38vh);
+    height: min(510px, 40vh);
     top: 5%;
     left: 5%;
     z-index: 10;
@@ -216,16 +216,12 @@
 }
 
 .card--tall {
-    width: min(240px, 16vw);
-    height: min(480px, 45vh);
-    top: 45%;
-    left: 8%;
+    top: 55%;
+    left: 20%;
     z-index: 25;
 }
 
 .card--small {
-    width: min(210px, 14vw);
-    height: min(180px, 17vh);
     bottom: 10%;
     right: 20%;
     z-index: 30;
@@ -369,6 +365,207 @@
 .window-btn-close:hover {
     background: #ff0000 !important;
     color: #ffffff !important;
+}
+
+/* Гостевая книга */
+.guestbook-entry {
+    border-bottom: 1px solid #dfdfdf;
+    padding: 4px 0;
+}
+
+    .guestbook-entry:last-child {
+        border-bottom: none;
+    }
+
+.guestbook-name {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000080;
+}
+
+.guestbook-text {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #000000;
+    margin: 2px 0;
+}
+
+.guestbook-date {
+    font-family: 'Courier New', monospace;
+    font-size: 8px;
+    color: #808080;
+}
+
+.guestbook-empty {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #808080;
+    text-align: center;
+    padding: 10px;
+}
+/* ===============================================
+   WIN95 ПЛЕЕР — ПОЛНОСТЬЮ В СТИЛЕ WINDOWS 95
+   ============================================= */
+
+/* Дисплей */
+.win95-display {
+    background: #c0c0c0;
+    padding: 4px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+}
+
+.win95-screen {
+    background: #000080;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    padding: 6px 8px;
+    border: 2px solid #808080;
+    border-top-color: #000000;
+    border-left-color: #000000;
+    border-right-color: #dfdfdf;
+    border-bottom-color: #dfdfdf;
+    text-align: center;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 2px rgba(255,255,255,0.3);
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Прогресс-бар (виндовый) */
+.win95-progress {
+    background: #c0c0c0;
+    padding: 3px 0;
+}
+
+.win95-progress-fill {
+    height: 6px;
+    background: #000080;
+    border: 1px solid #808080;
+    border-top-color: #000000;
+    border-left-color: #000000;
+    border-right-color: #dfdfdf;
+    border-bottom-color: #dfdfdf;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* Кнопки плеера (Windows 95 style) */
+.win95-controls {
+    display: flex;
+    gap: 4px;
+    background: #c0c0c0;
+    padding: 4px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.win95-btn-player {
+    background: #c0c0c0;
+    border: none;
+    padding: 2px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    min-width: 32px;
+    text-align: center;
+}
+
+    .win95-btn-player:active {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+    }
+
+    .win95-btn-player:hover {
+        background: #a0a0a0;
+    }
+
+/* Список треков (Windows 95) */
+.win95-list {
+    background: #ffffff;
+    padding: 0;
+    margin: 2px 0;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #dfdfdf;
+    border-bottom: 2px solid #dfdfdf;
+    max-height: 90px;
+    overflow-y: auto;
+}
+
+.win95-list-item {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: #000000;
+    border-bottom: 1px solid #dfdfdf;
+    transition: none;
+}
+
+    .win95-list-item:hover {
+        background: #000080;
+        color: #ffffff;
+    }
+
+    .win95-list-item.active {
+        background: #000080;
+        color: #ffffff;
+    }
+
+        .win95-list-item.active::before {
+            content: "▶ ";
+            color: #ffffff;
+        }
+
+/* Статус-бар */
+.win95-status {
+    background: #c0c0c0;
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    padding: 3px 6px;
+    color: #000000;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+/* Скролл для списка (виндовый) */
+.win95-list::-webkit-scrollbar {
+    width: 12px;
+}
+
+.win95-list::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #dfdfdf;
+}
+
+.win95-list::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
 }
 
 /* ===============================================
@@ -669,20 +866,6 @@
     width: 100%;
     padding: 6px;
     border: 1px solid #88aaff;
-}
-
-/* Модалка для большого постера */
-.poster-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 20000;
-    display: none;
-    justify-content: center;
-    align-items: center;
 }
 
 .poster-modal-content {
@@ -1067,7 +1250,7 @@
 
 @media (max-width: 2300px) {
     .corner-img {
-        width: 150px; /* На телефонах поменьше, но всё ещё видно */
+        width: 150px;
     }
 }
 /* ===============================================

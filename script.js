@@ -340,44 +340,39 @@
         loadTrack(0);
     });
     // ===============================================
-    // ГОСТЕВАЯ КНИГА через Supabase
+    // ГОСТЕВАЯ КНИГА (JsonBox.ru)
     // ===============================================
 
-    // ТВОИ ДАННЫЕ (замени на свои!)
-    const SUPABASE_URL = 'https://hdpzprdmliavjxjffypu.supabase.co';
-    const SUPABASE_KEY = 'https://hdpzprdmliavjjxffypu.supabase.co/rest/v1/';  // Вставь свой ключ!
+    // --- НАСТРОЙКИ ---
+    // Вставь сюда свой ПОЛНЫЙ API-ключ (начинается с "api_")
+    const API_KEY = '6816942f0c3d866f4ed8f715fb7e7db3';
+    const API_URL = 'https://jsonbox.ru/api.php';
 
-    // Загрузка сообщений
+    // --- ФУНКЦИИ ДЛЯ РАБОТЫ С ДАННЫМИ ---
+
+    // Загрузка всех сообщений
     async function loadMessages() {
         try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/messages?select=*&order=created_at.desc`, {
-                headers: {
-                    'apikey': SUPABASE_KEY,
-                    'Authorization': `Bearer ${SUPABASE_KEY}`
-                }
-            });
+            const response = await fetch(`${API_URL}?action=get&api_key=${API_KEY}`);
             if (!response.ok) throw new Error('Ошибка загрузки');
-            return await response.json();
+            const result = await response.json();
+            // Возвращаем массив сообщений или пустой массив, если данных нет
+            return result.data?.messages || [];
         } catch (error) {
-            console.error('Ошибка загрузки:', error);
+            console.error('Ошибка загрузки сообщений:', error);
             return [];
         }
     }
 
-    // Сохранение сообщения
-    async function saveMessage(name, text) {
+    // Сохранение всех сообщений
+    async function saveMessages(messages) {
         try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/messages`, {
+            const response = await fetch(`${API_URL}?action=store`, {
                 method: 'POST',
-                headers: {
-                    'apikey': SUPABASE_KEY,
-                    'Authorization': `Bearer ${SUPABASE_KEY}`,
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: name || 'Аноним',
-                    text: text,
-                    date: new Date().toLocaleString()
+                    api_key: API_KEY,
+                    data: { messages: messages }
                 })
             });
             if (!response.ok) throw new Error('Ошибка сохранения');
@@ -388,13 +383,22 @@
         }
     }
 
-    // Добавление сообщения
+    // Добавление нового сообщения
     async function addMessage(name, text) {
-        await saveMessage(name, text);
-        renderMessages();
+        const messages = await loadMessages();
+        // Добавляем новое сообщение в начало списка
+        messages.unshift({
+            name: name || 'Аноним',
+            text: text,
+            date: new Date().toLocaleString()
+        });
+        await saveMessages(messages);
+        renderMessages(); // Обновляем отображение
     }
 
-    // Отображение сообщений
+    // --- ОТОБРАЖЕНИЕ СООБЩЕНИЙ ---
+
+    // Функция для рендеринга сообщений
     async function renderMessages() {
         const container = document.getElementById('guestbookContainer');
         if (!container) return;
@@ -407,14 +411,16 @@
 
         container.innerHTML = messages.map(msg => `
         <div class="guestbook-entry">
-            <div class="guestbook-name">${msg.name || 'Аноним'}</div>
+            <div class="guestbook-name">${msg.name}</div>
             <div class="guestbook-text">${msg.text}</div>
-            <div class="guestbook-date">${msg.date || 'неизвестно'}</div>
+            <div class="guestbook-date">${msg.date}</div>
         </div>
     `).join('');
     }
 
-    // Обработчик формы
+    // --- ОБРАБОТЧИК ФОРМЫ ---
+
+    // Запускаем код после загрузки страницы
     document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('guestbookForm');
         if (form) {
@@ -428,10 +434,12 @@
 
                 if (text) {
                     await addMessage(name, text);
-                    form.reset();
+                    form.reset(); // Очищаем форму
                 }
             });
         }
+
+        // Загружаем и отображаем сообщения
         renderMessages();
     });
 })();

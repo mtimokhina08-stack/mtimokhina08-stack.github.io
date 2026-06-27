@@ -1,4 +1,14 @@
-﻿
+﻿/* ===============================================
+   ФОН
+   ============================================= */
+body {
+    background-image: url('img/fon2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 /*==================================================
   ТЯН НА ФОНЕ
 ==================================================*/
@@ -6,8 +16,8 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    z-index: 1000;
-    pointer-events: auto;
+    z-index: 5;
+    pointer-events: none;
     line-height: 0;
 }
 
@@ -19,66 +29,41 @@
 
 .corner-img {
     width: 500px;
-    height: auto;
+    height: none;
     display: block;
     transition: transform 0.3s, filter 0.2s;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    pointer-events: auto;
+    cursor: pointer;
+    clip-path: inset(2% 20% 0% 20%);
 }
 
     .corner-img:hover {
         transform: scale(1.1);
         filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
     }
+
 /* ===============================================
-   ЛЕВАЯ ГИФКА СВЕРХУ
-   ============================================= */
-
-.top-gif {
-    position: absolute;
-    top: 100px;
-    left: 3%;
-    width: min(250px, 40vw);
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    z-index: 50;
-}
-
-    .top-gif:hover {
-        transform: scale(1.05);
-    }
-
-/* Адаптив для телефонов */
-@media (max-width: 700px) {
-    .top-gif {
-        width: min(150px, 30vw);
-        top: 200px;
-        left: 2%;
-    }
-}
-/* ===============================================
-ВЕРХНЯЯ ПЛАШКА — СТИЛЬ WINDOWS 95 С ГРАДИЕНТОМ
+ВЕРХНЯЯ ПЛАШКА
 ============================================= */
 .arcade-banner {
-    position: fixed; /* Фиксируем плашку на экране */
-    top: 0; /* Прижимаем к самому верхнему краю */
-    left: 0; /* Прижимаем к левому краю */
-    width: 100%; /* Растягиваем на 100% ширины экрана */
-    z-index: 100; /* Высокий приоритет, чтобы карточки не наезжали поверх */
-
-    background: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: url('img/stars.jpg');
     box-sizing: border-box;
     padding: 1.6rem 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid #e0e0e0;
+    border: 3px solid #c4a570;
     outline: 1px solid #000000;
     box-shadow: inset 0 0 0 1px #000000;
 }
 
 .arcade-banner__content {
-    font-family: 'Courier New', Courier, monospace; /* Ретро-моноширинный шрифт */
+    font-family: 'Courier New', Courier, monospace;
     font-size: clamp(0.85rem, 2.5vw, 1.1rem);
     font-weight: bold;
     letter-spacing: 1px;
@@ -86,78 +71,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem; /* Отступы между элементами */
-    flex-wrap: wrap; /* Чтобы текст красиво переносился на мобилках */
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
-/* Розовый текст (Русский) */
-.arcade-txt--pink {
+.arcade-sparkle {
     color: #f7a3ca;
     text-shadow: 0 0 2px rgba(247, 163, 202, 0.5);
 }
 
-/* Голубой текст (English) */
-.arcade-txt--cyan {
-    color: #5ce1e6;
-    text-shadow: 0 0 2px rgba(92, 225, 230, 0.5);
+.center-image {
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+    width: 700px; /* базовый размер */
+    max-width: 90vw; /* не больше 90% ширины экрана */
 }
 
-/* Желтые искорки / символы */
-.arcade-sparkle {
-    color: #ffe17d;
-    font-size: 1.2rem;
-    line-height: 1;
-}
+    .center-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 
 /* ===============================================
-   ВТОРАЯ ПЛАШКА — УЗКАЯ, НЕ НА ВЕСЬ ЭКРАН
-   ============================================= */
-
-.arcade-banner--inline {
-    position: sticky;
-    width: fit-content;
-    max-width: 90%;
-    margin: 80px auto 0px;
-    display: table;
-    z-index: 99;
-}
-
-/* Анимируем только внутренние звёздочки */
-.arcade-sparkle {
-    display: inline-block;
-    animation: sparkleFloat 2s ease-in-out infinite;
-}
-
-@keyframes sparkleFloat {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-2px);
-    }
-}
-
-.arcade-txt--pink, .arcade-txt--cyan {
-    display: inline-block;
-    animation: textWobble 3s ease-in-out infinite;
-}
-
-@keyframes textWobble {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(0.5deg);
-    }
-
-    75% {
-        transform: rotate(-0.5deg);
-    }
-}
-/* ===============================================
-   СЕКЦИЯ С ПЛАШКАМИ
+   БАЗОВАЯ ПЛАШКА
    ============================================= */
 
 .cards-section {
@@ -174,399 +115,92 @@
 }
 
 /* ===============================================
-   БАЗОВАЯ ПЛАШКА
+   УНИВЕРСАЛЬНЫЙ СТИЛЬ WINDOWS 95
    ============================================= */
 
-.card {
-    position: absolute;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    will-change: transform, opacity;
-    opacity: 0;
-    transform: translateY(60px) scale(0.95);
-    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.2s;
-}
-
-    .card.visible {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-/* ===============================================
-   РАЗМЕРЫ ПЛАШЕК — ПРОЦЕНТНОЕ ПОЗИЦИОНИРОВАНИЕ
-   ============================================= */
-
-.card--mem {
-    width: min(340px, 22vw);
-    height: min(510px, 40vh);
-    top: 5%;
-    left: 5%;
-    z-index: 10;
-}
-
-.card--md{
-    width: min(300px, 20vw);
-    height: min(320px, 30vh);
-    top: 15%;
-    right: 15%;
-    z-index: 20;
-}
-
-.card--tall {
-    top: 55%;
-    left: 20%;
-    z-index: 25;
-}
-
-.card--small {
-    bottom: 10%;
-    right: 20%;
-    z-index: 30;
-}
-
-.card--anime {
-    width: min(400px, 27vw);
-    height: min(800px, 90vh);
-    bottom: 30%;
-    left: 87%;
-    z-index: 15;
-}
-
-.card--accent {
-    width: min(280px, 18vw);
-    height: min(140px, 13vh);
-    bottom: 50%;
-    right: 8%;
-    z-index: 28;
-    background: rgba(80, 60, 120, 0.85);
-}
-
-/* ===============================================
-   ЗАДЕРЖКИ ПОЯВЛЕНИЯ 
-   ============================================= */
-
-.card:nth-child(1).visible {
-    transition-delay: 0.05s;
-}
-
-.card:nth-child(2).visible {
-    transition-delay: 0.20s;
-}
-
-.card:nth-child(3).visible {
-    transition-delay: 0.35s;
-}
-
-.card:nth-child(4).visible {
-    transition-delay: 0.50s;
-}
-
-.card:nth-child(5).visible {
-    transition-delay: 0.65s;
-}
-
-.card:nth-child(6).visible {
-    transition-delay: 0.80s;
-}
-
-
-/* ===============================================
-   СТИЛЬ WINDOWS 95
-   ============================================= */
-
-.card--win95 {
-    background: #ece9d8 !important;
-    backdrop-filter: none !important;
-    box-shadow: none !important;
-    border: none !important;
+.win95-new {
+    position: absolute !important;
+    background: #f5f0e8 !important;
+    display: flex !important;
+    flex-direction: column !important;
     padding: 0 !important;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    overflow: hidden !important;
+    border: 3px solid #d0c8b8 !important;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 0 !important;
 }
 
-    .card--win95::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
-        z-index: 5;
-        border-top: 3px solid #ffffff;
-        border-left: 3px solid #ffffff;
-        border-right: 3px solid #808080;
-        border-bottom: 3px solid #808080;
+    /* Заголовок */
+    .win95-new .titlebar {
+        background: linear-gradient(135deg, #000080, #1a4c8a, #3b7ec8) !important;
+        padding: 6px 10px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        font-family: 'Segoe UI', 'Courier New', monospace !important;
+        font-weight: bold !important;
+        font-size: 13px !important;
+        color: #ffffff !important;
+        min-height: 32px !important;
+        border-bottom: 1px solid #808080 !important;
     }
 
-    .card--win95::after {
-        content: '';
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        right: 3px;
-        bottom: 3px;
-        pointer-events: none;
-        z-index: 5;
-        border-top: 1px solid #dfdfdf;
-        border-left: 1px solid #dfdfdf;
-        border-right: 1px solid #a0a0a0;
-        border-bottom: 1px solid #a0a0a0;
+    /* Меню */
+    .win95-new .menu {
+        background: #ece9d8 !important;
+        padding: 2px 8px !important;
+        display: flex !important;
+        gap: 6px !important;
+        border-bottom: 1px solid #808080 !important;
+        font-family: 'Segoe UI', 'Courier New', monospace !important;
+        font-size: 12px !important;
     }
 
-    .card--win95 .card__content {
-        background: #ece9d8;
-        padding: 1rem;
-        flex: 1;
-        margin: 0 3px 3px 3px;
-        position: relative;
-        z-index: 10;
+    .win95-new .menu-item {
+        color: #000000 !important;
+        padding: 2px 6px !important;
+        cursor: default !important;
     }
 
-.window-titlebar {
-    background: #000080;
-    padding: 6px 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Segoe UI', 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 13px;
-    width: calc(100% - 6px);
-    margin: 3px 3px 0 3px;
-    position: relative;
-    z-index: 15;
-}
-
-.window-title {
-    color: #ffffff;
-}
-
-.window-btn {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: #c0c0c0;
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
-    border-right: 1px solid #000000;
-    border-bottom: 1px solid #000000;
-    text-align: center;
-    line-height: 18px;
-    font-size: 13px;
-    cursor: default;
-    color: #000000;
-}
-
-.window-btn-close:hover {
-    background: #ff0000 !important;
-    color: #ffffff !important;
-}
-
-/* Гостевая книга */
-.guestbook-entry {
-    border-bottom: 1px solid #dfdfdf;
-    padding: 4px 0;
-}
-
-    .guestbook-entry:last-child {
-        border-bottom: none;
-    }
-
-.guestbook-name {
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    font-weight: bold;
-    color: #000080;
-}
-
-.guestbook-text {
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    color: #000000;
-    margin: 2px 0;
-}
-
-.guestbook-date {
-    font-family: 'Courier New', monospace;
-    font-size: 8px;
-    color: #808080;
-}
-
-.guestbook-empty {
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    color: #808080;
-    text-align: center;
-    padding: 10px;
-}
-/* ===============================================
-   WIN95 ПЛЕЕР — ПОЛНОСТЬЮ В СТИЛЕ WINDOWS 95
-   ============================================= */
-
-/* Дисплей */
-.win95-display {
-    background: #c0c0c0;
-    padding: 4px;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
-    border-bottom: 2px solid #808080;
-}
-
-.win95-screen {
-    background: #000080;
-    color: #ffffff;
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    padding: 6px 8px;
-    border: 2px solid #808080;
-    border-top-color: #000000;
-    border-left-color: #000000;
-    border-right-color: #dfdfdf;
-    border-bottom-color: #dfdfdf;
-    text-align: center;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 2px rgba(255,255,255,0.3);
-    min-height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Прогресс-бар (виндовый) */
-.win95-progress {
-    background: #c0c0c0;
-    padding: 3px 0;
-}
-
-.win95-progress-fill {
-    height: 6px;
-    background: #000080;
-    border: 1px solid #808080;
-    border-top-color: #000000;
-    border-left-color: #000000;
-    border-right-color: #dfdfdf;
-    border-bottom-color: #dfdfdf;
-    width: 0%;
-    transition: width 0.1s linear;
-}
-
-/* Кнопки плеера (Windows 95 style) */
-.win95-controls {
-    display: flex;
-    gap: 4px;
-    background: #c0c0c0;
-    padding: 4px;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
-    border-bottom: 2px solid #808080;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.win95-btn-player {
-    background: #c0c0c0;
-    border: none;
-    padding: 2px 12px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    font-weight: bold;
-    color: #000000;
-    cursor: pointer;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
-    border-bottom: 2px solid #808080;
-    min-width: 32px;
-    text-align: center;
-}
-
-    .win95-btn-player:active {
-        border-top: 2px solid #808080;
-        border-left: 2px solid #808080;
-        border-right: 2px solid #ffffff;
-        border-bottom: 2px solid #ffffff;
-    }
-
-    .win95-btn-player:hover {
-        background: #a0a0a0;
-    }
-
-/* Список треков (Windows 95) */
-.win95-list {
-    background: #ffffff;
-    padding: 0;
-    margin: 2px 0;
-    border-top: 2px solid #808080;
-    border-left: 2px solid #808080;
-    border-right: 2px solid #dfdfdf;
-    border-bottom: 2px solid #dfdfdf;
-    max-height: 90px;
-    overflow-y: auto;
-}
-
-.win95-list-item {
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    padding: 4px 8px;
-    cursor: pointer;
-    color: #000000;
-    border-bottom: 1px solid #dfdfdf;
-    transition: none;
-}
-
-    .win95-list-item:hover {
-        background: #000080;
-        color: #ffffff;
-    }
-
-    .win95-list-item.active {
-        background: #000080;
-        color: #ffffff;
-    }
-
-        .win95-list-item.active::before {
-            content: "▶ ";
-            color: #ffffff;
+        .win95-new .menu-item:hover {
+            background: #000080 !important;
+            color: #ffffff !important;
         }
 
-/* Статус-бар */
-.win95-status {
-    background: #c0c0c0;
-    font-family: 'Courier New', monospace;
-    font-size: 9px;
-    padding: 3px 6px;
-    color: #000000;
-    border-top: 1px solid #808080;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #dfdfdf;
-    border-bottom: 1px solid #dfdfdf;
-}
+    /* Содержимое */
+    .win95-new .content {
+        background: #f5f0e8 !important;
+        padding: 12px !important;
+        flex: 1 !important;
+    }
 
-/* Скролл для списка (виндовый) */
-.win95-list::-webkit-scrollbar {
-    width: 12px;
-}
+    /* Кнопки */
+    .win95-new .win-buttons {
+        display: flex !important;
+        gap: 4px !important;
+    }
 
-.win95-list::-webkit-scrollbar-track {
-    background: #c0c0c0;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #dfdfdf;
-}
+    .win95-new .win-btn {
+        display: inline-block !important;
+        width: 20px !important;
+        height: 20px !important;
+        background: #c0c0c0 !important;
+        border-top: 1px solid #ffffff !important;
+        border-left: 1px solid #ffffff !important;
+        border-right: 1px solid #000000 !important;
+        border-bottom: 1px solid #000000 !important;
+        text-align: center !important;
+        line-height: 18px !important;
+        font-size: 13px !important;
+        cursor: default !important;
+        color: #000000 !important;
+    }
 
-.win95-list::-webkit-scrollbar-thumb {
-    background: #c0c0c0;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
-    border-bottom: 2px solid #808080;
-}
+    .win95-new .win-btn-close:hover {
+        background: #ff0000 !important;
+        color: #ffffff !important;
+    }
+
 
 /* ===============================================
    ПЛАШКА С СОЦСЕТЯМИ
@@ -576,14 +210,13 @@
     width: min(320px, 25vw) !important;
     height: auto !important;
     min-height: min(280px, 30vh) !important;
-    top: 5% !important;
-    right: 38% !important;
-    left: auto !important;
-    bottom: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 190px !important;
     z-index: 35 !important;
 }
 
-    .card--social .card__content {
+    .card--social .win95-content {
         padding: 12px !important;
         overflow: hidden;
     }
@@ -609,298 +242,113 @@
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 6px;
+    border-radius: 2px;
+    border: 4px solid #808080 !important;
+    outline: 1px solid #ffffff !important;
+    outline-offset: -3px !important;
+    border-radius: 2px;
 }
 
-@media (max-width: 800px) {
-    .cards-section {
-        padding: 13rem 1.5rem 4rem;
-    }
 
-    .cards-stage {
-        min-height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1.2rem;
-        position: relative;
-    }
-
-    /* Все карточки становятся статичными (не абсолютными) */
-    .card {
-        position: relative !important;
-        margin: 0 auto !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        transform: none !important;
-        opacity: 0;
-        width: 90% !important;
-        max-width: 320px;
-        height: auto !important;
-        min-height: 160px;
-    }
-
-        .card.visible {
-            transform: scale(1) !important;
-            opacity: 1;
-        }
-
-    .card--tall {
-        min-height: 280px;
-    }
-
-    .card--wide {
-        min-height: 150px;
-    }
-}
 /* ===============================================
-   КАССЕТЫ С ПОСТЕРАМИ И ЭФФЕКТОМ ПОТЁРТОСТИ
+   ПЛАШКА С АНИМЕ
    ============================================= */
-
-.pixel-tape {
+/* --- ОСНОВНОЙ КОНТЕЙНЕР ПОЛКИ --- */
+.my-custom-shelf {
+    background-image: url('img/polka.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 5px solid #846c59 !important;
+    border-radius: 0 !important;
+    padding: 0px 0px 10px 50px; /* Внутренние отступы, чтобы диски не прижимались к краям */
+    border-bottom: 20px solid #140d0b;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25) !important;
     position: relative;
-    width: 80px;
-    cursor: pointer;
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-    .pixel-tape:hover {
-        transform: translateX(-5px) translateY(-8px) rotate(-2deg);
-        z-index: 15;
-    }
-
-/* Контейнер постера на кассете */
-.tape-poster {
-    position: relative;
-    width: 80px;
-    height: 100px;
-    background: #4a3e7a;
-    padding: 4px;
-    border-left: 3px solid #ffbbee;
-    border-top: 2px solid #ffccff;
-    border-right: 3px solid #5a4e8a;
-    border-bottom: 2px solid #4a3e7a;
-    box-shadow: inset -1px -1px 0 #3a2e6a, inset 1px 1px 0 #ddd0ff, 2px 2px 0 rgba(0,0,0,0.5);
+    width: 200px; /* Ширина подобрана под количество дисков */
+    height: auto;
+    top: 300px;
+    right: 200px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 35px; /* Автоматический отступ между верхней и нижней полкой (вместо разделителя) */
     overflow: hidden;
 }
 
-    .tape-poster img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        filter: contrast(0.95) saturate(0.9);
-    }
-
-/* ПОТЁРТОСТЬ — винтажный эффект */
-.wear-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: repeating-linear-gradient( 45deg, rgba(180, 160, 200, 0.1) 0px, rgba(180, 160, 200, 0.1) 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 6px );
-    mix-blend-mode: overlay;
-}
-
-    /* Дополнительный эффект царапин */
-    .wear-overlay::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: repeating-linear-gradient( 0deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 4px );
-        pointer-events: none;
-    }
-
-/* Наклейка с кодом внизу кассеты */
-.tape-label {
+.shelf-tekst {
+    color: #F5DEB3;
     font-family: 'Courier New', monospace;
-    font-size: 8px;
-    font-weight: bold;
+    font-size: 0.8rem;
     text-align: center;
-    margin-top: 6px;
-    color: #ffecdd;
-    text-shadow: 1px 1px 0 #3a2e5a;
-    background: #4a3e7a;
-    display: inline-block;
-    width: 70px;
-    margin-left: 5px;
-    padding: 2px 0;
-    letter-spacing: 1.5px;
-    border-left: 2px solid #aa99ff;
-    border-top: 1px solid #ccbbff;
-    border-right: 2px solid #2a1e5a;
-    border-bottom: 1px solid #2a1e5a;
+    padding: 8px 0;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    border-top: 1px dashed rgba(245, 222, 179, 0.2);
+    margin-top: 12px;
 }
 
-/* Тултип при наведении */
-.pixel-tape::after {
-    content: attr(data-name);
-    position: absolute;
-    bottom: -28px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1a1a2aee;
-    color: #ffbbdd;
-    font-family: 'Courier New', monospace;
-    font-size: 9px;
-    padding: 4px 10px;
-    white-space: nowrap;
-    border: 1px solid #ff88aa;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-    z-index: 20;
-}
-
-.pixel-tape:hover::after {
-    opacity: 1;
-}
-
-/* LED-панель */
-.led-strip {
-    background: #1e1e2e;
-    padding: 4px 8px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-top: 2px solid #ff88aa;
-    border-left: 2px solid #88aaff;
-    border-right: 2px solid #4a4e6a;
-    border-bottom: 2px solid #2a2e4a;
-}
-
-.led-red {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ff3366;
-    box-shadow: 0 0 4px #ff77aa;
-}
-
-.led-green {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #66ffcc;
-    box-shadow: 0 0 4px #88ffdd;
-}
-
-.blink {
-    animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-    0%, 100% {
+    .shelf-tekst:hover {
         opacity: 1;
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(245, 222, 179, 0.3);
     }
 
-    50% {
-        opacity: 0.3;
-    }
-}
-
-.led-label {
-    font-family: 'Courier New', monospace;
-    font-size: 9px;
-    color: #ccbbff;
-    letter-spacing: 2px;
-}
-
-/* Полка */
-.pixel-shelf {
-    background: linear-gradient(145deg, #2a2a3a, #1a1a2a);
-    padding: 16px 12px 12px 12px;
-    border-top: 4px solid #ff77aa;
-    border-left: 2px solid #88aaff;
-    border-right: 2px solid #446688;
-    box-shadow: inset 0 0 0 2px #2a2a4a, 0 4px 12px rgba(0,0,0,0.5);
-    position: relative;
-}
-
-    /* Пыльный налёт */
-    .pixel-shelf::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: repeating-linear-gradient(45deg, rgba(200, 180, 200, 0.08) 0px, rgba(200, 180, 200, 0.08) 2px, transparent 2px, transparent 8px);
-        pointer-events: none;
-    }
-
+/* --- РЯДЫ ПОЛОК --- */
 .shelf-row {
     display: flex;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-}
-
-.shelf-divider {
-    height: 8px;
-    background: #6a5e9a;
-    margin: 14px 0;
-    border-top: 2px solid #ffbbee;
-    border-bottom: 2px solid #3a2e5a;
-    box-shadow: inset 0 1px 0 #aa99cc;
-}
-
-.pixel-hint {
-    font-family: monospace;
-    font-size: 9px;
-    text-align: center;
-    margin-top: 16px;
-    color: #ccbbff;
-    background: #1e1e2e;
-    display: inline-block;
     width: 100%;
-    padding: 6px;
-    border: 1px solid #88aaff;
+    justify-content: flex-start;
+    align-items: flex-end; /* Выравнивает все диски строго по нижней линии */
 }
 
-.poster-modal-content {
-    width: 450px;
-    background: #ece9d8;
-    border-top: 3px solid #ffffff;
-    border-left: 3px solid #ffffff;
-    border-right: 3px solid #808080;
-    border-bottom: 3px solid #808080;
-    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.5);
+.bottom-shelf {
+    margin-top: 15px;
+    padding-top: 5px;
 }
 
-.poster-modal-inner {
-    padding: 20px;
-    text-align: center;
+.box-item {
+    position: relative;
+    margin-left: -30px; /* Создает плотную укладку и легкий нахлест, как в CSS */
+    z-index: 2;
+    transition: z-index 0.2s, transform 0.2s;
 }
 
-    .poster-modal-inner img {
-        max-width: 100%;
-        max-height: 500px;
-        border: 2px solid #000;
-        box-shadow: 4px 4px 0 #808080;
-    }
+.box-image {
+    display: block;
+    width: 50px; /* Ширина боковой части */
+    height: 110px; /* Высота дисков */
+    object-fit: fill; /* Гарантирует правильные пропорции пиксель-арта */
+}
 
-.poster-title {
-    margin-top: 12px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
+.box-item:hover {
+    z-index: 20;
+    transform: translate(-25px, 0px) rotate(-4deg) scale(1.08);
 }
 
 /* ===============================================
-   СКРОЛЛ ФОТОГРАФИЙ В ПЛАШКЕ
+   ПЛАШКА ФОТО
    ============================================= */
+
+.card--mem {
+    width: min(340px, 22vw);
+    height: min(510px, 40vh);
+    top: -15%;
+    left: -15%;
+    z-index: 10;
+}
+
+    /* Содержимое внутри win95-new */
+    .card--mem .content {
+        padding: 8px !important;
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 35px);
+        box-sizing: border-box;
+    }
+
+/*СКРОЛЛ ФОТО */
 
 .photo-scroll-vertical {
     flex: 1;
@@ -908,8 +356,8 @@
     overflow-x: hidden;
     background: #ece9d8;
     border: 1px solid #a0a0a0;
-    margin-top: 4px;
     padding: 6px;
+    margin-top: 4px;
 }
 
 .photo-list {
@@ -920,9 +368,13 @@
 
 .photo-frame {
     background: #ffffff;
-    border: 2px solid #808080;
+    border-top: 2px solid #a0a0a0;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
     padding: 8px;
-    box-shadow: inset 1px 1px 0px #ffffff, 1px 1px 0px #000000;
+    margin: 4px;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
     text-align: center;
 }
 
@@ -932,9 +384,11 @@
     max-height: 180px;
     object-fit: contain;
     display: block;
+    box-shadow: inset 0 0 0 1px #e0e0e0;
 }
 
-/* Стилизация вертикального скролла (Windows 95) */
+/*СТИЛИЗАЦИЯ СКРОЛЛА (Windows 95)*/
+
 .photo-scroll-vertical::-webkit-scrollbar {
     width: 16px;
 }
@@ -965,23 +419,124 @@
     border: 1px solid #000000;
     height: 16px;
 }
-.photo-frame {
-    background: #ffffff;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
-    border-bottom: 2px solid #808080;
-    padding: 8px;
-    margin: 4px;
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+
+/* ===============================================
+   ИГРА: ЗВЁЗДОЧКИ
+   ============================================= */
+
+/* Позиционирование плашки */
+.card--game {
+    position: absolute !important;
+    top: -100px !important;
+    right: -150px !important;
+    width: 280px !important;
+    min-height: 180px !important;
+    z-index: 200 !important;
 }
 
-.scroll-photo-vertical {
-    width: 100%;
-    height: auto;
-    display: block;
-    box-shadow: inset 0 0 0 1px #e0e0e0;
+    /* Контент внутри win95-new */
+    .card--game .content {
+        text-align: center !important;
+        padding: 12px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 6px !important;
+    }
+
+/* Счётчик */
+.game-counter {
+    font-family: 'Courier New', monospace;
 }
+
+    .game-counter #starCount {
+        font-size: 32px;
+        font-weight: bold;
+        color: #000080;
+    }
+
+.game-total {
+    font-size: 24px;
+    color: #000000;
+}
+
+/* Сообщение */
+.game-message {
+    font-size: 11px;
+    margin: 4px 0;
+    color: #000000;
+    font-family: 'Courier New', monospace;
+}
+
+/* Кнопка старта */
+.game-start-btn {
+    background: #c0c0c0;
+    border: none;
+    padding: 6px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    width: 90%;
+    margin: 4px auto;
+    display: block;
+}
+
+    .game-start-btn:active {
+        border-top: 2px solid #000000;
+        border-left: 2px solid #000000;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+    }
+
+    .game-start-btn:hover {
+        background: #a0a0a0;
+    }
+
+/* GIF при победе */
+.game-win-gif {
+    margin-top: 8px;
+}
+
+    .game-win-gif img {
+        max-width: 80px;
+        display: block;
+        margin: 0 auto;
+    }
+
+/* ===============================================
+   ЗВЁЗДОЧКИ
+   ============================================= */
+
+#starsContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.star {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.2s ease;
+    z-index: 100001;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    display: none;
+}
+
+    .star:hover {
+        transform: scale(1.2);
+    }
 
 
 /* ===============================================
@@ -989,21 +544,23 @@
    ============================================= */
 
 .bsod-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0000aa;
-    z-index: 9999;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Courier New', 'MS Sans Serif', monospace;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #0000aa !important;
+    z-index: 999999 !important;
+    display: none !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-family: 'Courier New', 'MS Sans Serif', monospace !important;
+    pointer-events: auto !important;
+    isolation: isolate !important; /* ← создаёт новый контекст */
 }
 
     .bsod-overlay.active {
-        display: flex;
+        display: flex !important;
     }
 
 .bsod-container {
@@ -1124,165 +681,336 @@
         color: #ffffff;
         display: inline-block;
     }
-
-@keyframes bsodBlink {
-    0%, 100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
-}
-
-/* Адаптация для мобилок */
-@media (max-width: 700px) {
-    .bsod-content {
-        flex-direction: column;
-    }
-
-    .bsod-right {
-        order: -1;
-        margin-bottom: 20px;
-    }
-
-    .bsod-gif {
-        max-width: 120px;
-    }
-
-    .bsod-emoticon {
-        font-size: 32px;
-    }
-
-    .bsod-title {
-        font-size: 18px;
-    }
-
-    .bsod-message {
-        font-size: 12px;
-    }
-
-    .bsod-code {
-        font-size: 10px;
-        overflow-x: auto;
-    }
-
-    .win95-btn {
-        padding: 6px 16px;
-        font-size: 12px;
-    }
-}
 /* ===============================================
-   ЗВЁЗДОЧКИ ДЛЯ ИГРЫ
+   ЛЕВАЯ ГИФКА СВЕРХУ
    ============================================= */
 
-.star {
+.top-gif {
     position: absolute;
-    width: 35px;
-    height: 35px;
+    top: 30%;
+    left: 25%;
+    width: min(250px, 40vw);
+    height: auto;
     cursor: pointer;
-    pointer-events: auto;
-    transition: all 0.2s ease;
-    z-index: 100001;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    transition: transform 0.3s ease;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25) !important;
+}
+
+
+/* ===============================================
+   ПЛЕЕР
+   ============================================= */
+.retro-player {
+    position: relative;
+    width: 345px; /* Подгони под свою картинку */
+    height: 345px; /* Подгони под свою картинку */
+    margin: 0 auto;
+    display: block;
+    top: -250px;
+    left: 400px;
+}
+
+/* Фон плеера */
+.player-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    pointer-events: none;
+    border: 3px solid #d0c8b8 !important;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.25) !important;
+}
+
+.player-screen {
+    position: absolute;
+    top: 6%; /* 35px / 520px ≈ 7% */
+    left: 5%; /* 32px / 350px ≈ 9% */
+    width: 85%; /* 300px / 350px ≈ 85% */
+    height: 35%; /* 100px / 520px ≈ 19% (если хочешь уменьшить, поменяй на 15%) */
+    background: rgba(240, 240, 240, 0.6);
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    padding: 1% 3%;
+    font-family: 'Courier New', monospace;
+    font-size: 12px; /* Шрифт оставь в px, он не должен сжиматься */
+}
+
+.playlist-container {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 5px;
+}
+
+    .playlist-container::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .playlist-container::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 2px;
+    }
+
+.track-item {
+    padding: 4px 6px;
+    cursor: pointer;
+    border-bottom: 1px dashed #ccc;
+    transition: 0.2s;
+    color: #222;
+}
+
+    .track-item:hover {
+        background: #d0d0d0;
+    }
+
+    .track-item.active {
+        background: #2a4a8a;
+        color: white;
+        font-weight: bold;
+    }
+
+/* ПРОГРЕСС-БАР */
+.progress-wrapper {
+    margin-top: 5px;
+    font-size: 10px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-track {
+    width: 100%;
+    height: 6px;
+    background: #ccc;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #aaa;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #2a4a8a;
+    width: 0%;
+    border-radius: 3px;
+}
+
+.progress-thumb {
+    position: absolute;
+    top: -3px;
+    width: 12px;
+    height: 12px;
+    background: #555;
+    border-radius: 50%;
+    left: 0%;
+    transform: translateX(-50%);
     display: none;
 }
 
-.star:hover {
-    transform: scale(1.2);
+.progress-track:hover .progress-thumb {
+    display: block;
 }
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+}
+
+/* --- КАССЕТА И БОБИНЫ --- */
+.tape-area {
+    position: absolute;
+    top: 160px; /* Подгони под свою картинку */
+    left: 20px;
+    width: 210px;
+    height: 145px;
+    z-index: 2;
+}
+
+.tape-static {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* ОТДЕЛЬНЫЕ БОБИНЫ */
+.tape-reel {
+    position: absolute;
+    pointer-events: none;
+    object-fit: contain;
+    transition: transform 0.1s linear;
+}
+
+.reel-left {
+    top: 22px; /* Подгони под левое отверстие */
+    left: 43px;
+    width: 40px;
+    height: 80px;
+}
+
+.reel-right {
+    top: 22px; /* Подгони под правое отверстие */
+    right: 43px;
+    width: 40px;
+    height: 80px;
+}
+
+/* Анимация вращения для каждой бобины */
+.tape-reel.spinning-left {
+    animation: spinReelLeft 0.8s linear infinite;
+}
+
+.tape-reel.spinning-right {
+    animation: spinReelRight 0.7s linear infinite;
+}
+
+@keyframes spinReelLeft {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinReelRight {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- СТИЛИЗОВАННЫЕ КНОПКИ WIN95 --- */
+.player-controls {
+    position: absolute;
+    bottom: 10px; /* Подгони под свою картинку */
+    right: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    z-index: 3;
+}
+
+.win95-btn {
+    background: #c0c0c0;
+    border: none;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-top: 3px solid #ffffff;
+    border-left: 3px solid #ffffff;
+    border-right: 3px solid #808080;
+    border-bottom: 3px solid #808080;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    transition: all 0.05s linear;
+}
+
+    .win95-btn.big-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Содержимое кнопки (иконка) */
+    .win95-btn .btn-content {
+        font-size: 22px;
+        color: #000;
+        line-height: 1;
+        text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+    }
+
+    .win95-btn.big-btn .btn-content {
+        font-size: 22px;
+    }
+
+    /* Эффект НАЖАТИЯ (вдавливание) */
+    .win95-btn:active {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        transform: translate(1px, 1px);
+        box-shadow: none;
+    }
+
+    .win95-btn:hover {
+        background: #d4d0c8;
+    }
+
 /* ===============================================
-   АДАПТИВНОСТЬ (ТОЛЬКО ОДИН БЛОК)
+   НИЖНЯЯ ПАНЕЛЬ
    ============================================= */
-
-@media (max-width: 800px) {
-    .cards-section {
-        padding: 13rem 1.5rem 4rem;
-    }
-
-    .cards-stage {
-        min-height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1.2rem;
-        position: relative;
-    }
-
-    .card {
-        position: relative !important;
-        margin: 0 auto !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        transform: none !important;
-        opacity: 0;
-        width: 90% !important;
-        max-width: 320px;
-        height: auto !important;
-        min-height: 160px;
-    }
-
-        .card.visible {
-            transform: scale(1) !important;
-            opacity: 1;
-        }
-
-    .card--tall {
-        min-height: 280px;
-    }
-
-    .card--wide {
-        min-height: 150px;
-    }
-
-    /* Плашка соцсетей на мобилках */
-    .card--social {
-        position: relative !important;
-        width: 90% !important;
-        margin: 0 auto;
-        top: auto !important;
-        right: auto !important;
-    }
+.win95-taskbar-deco {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 36px;
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #808080;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+    z-index: 9999;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    /* Скрываем по умолчанию */
+    transform: translateY(100%); /* Убираем вниз за экран */
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease;
+    pointer-events: none; /* Чтобы не мешала кликам, пока скрыта */
 }
 
-@media (max-width: 2300px) {
-    .corner-img {
-        width: 150px;
-    }
-}
-/* ===============================================
-   АДАПТИВ ДЛЯ ТЕЛЕФОНОВ (НОВЫЙ ПОРЯДОК ПЛАШЕК)
-   ============================================= */
-
-@media (max-width: 800px) {
-    .card--social {
-        order: 1;
-    }
-    .card--md {
-        order: 2;
+    /* Класс для появления (добавляется через JS) */
+    .win95-taskbar-deco.show {
+        transform: translateY(0); /* Возвращаем на место */
+        opacity: 1;
+        pointer-events: auto;
     }
 
-    .card--tall {
-        order: 3;
-    }
-
-    .card--small {
-        order: 4;
-    }
-
-    .card--anime {
-        order: 5;
-    }
-
-    .card--accent {
-        order: 6;
-    }
-
-    .card--mem {
-        order: 7;
-    }
+/* Остальные стили (иконки, текст) остаются без изменений */
+.deco-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
 }
 
+.deco-text {
+    color: #000;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.deco-icons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.deco-icon-right {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
+}
